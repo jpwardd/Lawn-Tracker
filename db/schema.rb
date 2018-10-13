@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2018_10_13_164726) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "phone_number", null: false
+    t.string "last_name"
+    t.bigint "phone_number", null: false
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
