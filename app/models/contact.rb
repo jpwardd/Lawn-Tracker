@@ -5,4 +5,3 @@ class Contact < ApplicationRecord
   
 end
 
-numericality: true
