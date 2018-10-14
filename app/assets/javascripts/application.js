@@ -17,3 +17,6 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+// = require jquery3
+// = require popper
+// = require bootstrap-sprockets

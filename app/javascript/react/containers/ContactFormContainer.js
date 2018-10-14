@@ -15,7 +15,7 @@ class ContactFormContainer extends Component {
   render() {
     return (
       <div className="container">
-      <h1>All contacts</h1>
+      <h1 className="display-4">All contacts</h1>
       <hr /> 
       
     </div>
