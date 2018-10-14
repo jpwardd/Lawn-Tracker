@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 
-
-class ContactContainer extends Component {
+class ContactIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       contacts: []
     };
   }
-
 
   componentDidMount() {
     fetch("/api/v1/contacts")
@@ -35,13 +33,9 @@ class ContactContainer extends Component {
 
   render() {
     return (
-      <div className="container">
-      <h1>All contacts</h1>
-      <hr /> 
-      
-    </div>
-  )
-}
+      <div>hello</div>
+    )
+  }
 }
 
-export default ContactContainer
+export default ContactIndexContainer

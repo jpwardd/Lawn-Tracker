@@ -1,9 +1,9 @@
 import React from 'react'
-import ContactsContainer from '../containers/ContactContainer'
+import ContactIndexContainer from '../containers/ContactIndexContainer'
 
 export const App = (props) => {
   return (
-    <ContactsContainer />
+    <ContactIndexContainer />
   )
 }
 
