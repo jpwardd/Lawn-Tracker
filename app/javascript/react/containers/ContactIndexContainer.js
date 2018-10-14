@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ContactFormContainer from './ContactFormContainer'
+import ContactTile from '../components/ContactTile'
 
 class ContactIndexContainer extends Component {
   constructor(props) {
@@ -54,8 +56,27 @@ class ContactIndexContainer extends Component {
   }
 
   render() {
+    let contacts = this.state.contacts.map((contact) => {
+      return(
+        <ContactTile 
+          key={contact.id}
+          firstName={contact.first_name}
+          lastName={contact.last_name}
+          phoneNumber={contact.phone_number}
+          address={contact.address}
+          city={contact.city}
+          state={contact.state}
+          zipCode={contact.zip_code}
+        />
+      )
+    })
     return (
-      <div>hello</div>
+      <div>
+        <ContactFormContainer 
+          addNewContact={this.addNewContact}
+        />
+        {contacts}
+      </div>
     )
   }
 }
