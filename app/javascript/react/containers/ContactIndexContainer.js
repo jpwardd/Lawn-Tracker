@@ -60,6 +60,7 @@ class ContactIndexContainer extends Component {
       return(
         <ContactTile 
           key={contact.id}
+          id={contact.id}
           firstName={contact.first_name}
           lastName={contact.last_name}
           phoneNumber={contact.phone_number}
