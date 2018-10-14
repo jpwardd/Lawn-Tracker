@@ -31,6 +31,28 @@ class ContactIndexContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  addNewContact(formPayload) {
+    fetch("/api/v1/contacts", {
+      method: "post",
+      body: JSON.stringify(formPayload)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+            throw error;
+        }
+      })
+       .then(response => response.json())
+       .then(body => {
+         console.log(body);
+         this.setState({ contacts: [...this.state.contacts, body] })
+       })
+       .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   render() {
     return (
       <div>hello</div>
