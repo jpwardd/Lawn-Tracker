@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TextInputField from '../components/TextInputField'
 
 
 class ContactFormContainer extends Component {
@@ -17,13 +18,13 @@ class ContactFormContainer extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClearForm = this.handleClearForm.bind(this)
-    this.handleClearForm = this.handleClearForm.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
-    let value = event.taget.value
-    let name = event.taget.name
-    this.setState({ [name]: value })
+    let value = event.target.value;
+    let name = event.target.name;
+    this.setState({ [name]: value });
   }
   
   handleClearForm(){
@@ -57,16 +58,48 @@ class ContactFormContainer extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-
-        <h1 className="display-4">All contacts</h1>
-        <hr /> 
-      
+        <form className="container" onSubmit={this.handleSubmit}>
+            <h2>All Contacts</h2>
+              <TextInputField 
+                label="First Name"
+                name="firstName"
+                value={this.state.firstName}
+                handleChange={this.handleChange}
+              />
+              
+              <TextInputField 
+                label="last Name"
+                name="lastName"
+                value={this.state.lastName}
+                handleChange={this.handleChange}
+              />
+              <TextInputField 
+                label="email"
+                name="email"
+                value={this.state.email}
+                handleChange={this.handleChange}
+              />
+              <TextInputField 
+                label="address"
+                name="address"
+                value={this.state.address}
+                handleChange={this.handleChange}
+              />
+              <TextInputField 
+                label="city"
+                name="city"
+                value={this.state.lastName}
+                handleChange={this.handleChange}
+              />
+              <TextInputField 
+                label="state"
+                name="zipCode"
+                value={this.state.lastName}
+                handleChange={this.handleChange}
+              />
         </form>
-    </div>
+  
   )
 }
 }
