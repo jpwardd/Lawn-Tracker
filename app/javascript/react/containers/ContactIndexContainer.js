@@ -38,8 +38,10 @@ class ContactIndexContainer extends Component {
 
   addNewContact(formPayload) {
     fetch("/api/v1/contacts.json", {
+      credentials: "same-origin",
       method: "post",
-      body: JSON.stringify(formPayload)
+      body: JSON.stringify(formPayload),
+      headers: { "Content-Type": "application/json" }
     })
       .then(response => {
         if (response.ok) {
@@ -47,15 +49,15 @@ class ContactIndexContainer extends Component {
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
-            throw error;
+          throw error;
         }
       })
-       .then(response => response.json())
-       .then(body => {
-         console.log(body);
-         this.setState({ contacts: [...this.state.contacts, body] })
-       })
-       .catch(error => console.error(`Error in fetch: ${error.message}`));
+      .then(response => response.json())
+      .then(body => {
+        console.log(body);
+        this.setState({ contacts: [...this.state.contacts, body] });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   // form toggle handler
