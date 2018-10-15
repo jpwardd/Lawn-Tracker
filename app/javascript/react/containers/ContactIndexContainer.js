@@ -64,6 +64,7 @@ class ContactIndexContainer extends Component {
           firstName={contact.first_name}
           lastName={contact.last_name}
           phoneNumber={contact.phone_number}
+          email={contact.email}
           address={contact.address}
           city={contact.city}
           state={contact.state}

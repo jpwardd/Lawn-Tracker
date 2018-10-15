@@ -15,29 +15,16 @@ class ContactFormContainer extends Component {
       state: "",
       zipCode: ""
 
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleClearForm = this.handleClearForm.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClearForm = this.handleClearForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     let value = event.target.value;
     let name = event.target.name;
     this.setState({ [name]: value });
-  }
-  
-  handleClearForm(){
-    this.setState({
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
-      address: "",
-      city: "",
-      state: "",
-      zipCode: ""
-    })
   }
 
   handleSubmit(event){
@@ -57,51 +44,84 @@ class ContactFormContainer extends Component {
     this.handleClearForm();
   }
 
+   handleClearForm(){
+    this.setState({
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      email: "",
+      address: "",
+      city: "",
+      state: "",
+      zipCode: ""
+    })
+  }
+
   render() {
     return (
         <form className="container" onSubmit={this.handleSubmit}>
             <h2>All Contacts</h2>
               <TextInputField 
+                content={this.state.firstName}
                 label="First Name"
                 name="firstName"
                 value={this.state.firstName}
                 handleChange={this.handleChange}
               />
-              
               <TextInputField 
+                content={this.state.lastName}
                 label="last Name"
                 name="lastName"
                 value={this.state.lastName}
                 handleChange={this.handleChange}
               />
               <TextInputField 
+                content={this.state.phoneNumber}
+                label="phone number"
+                name="phoneNumber"
+                value={this.state.phoneNumber}
+                handleChange={this.handleChange}
+              />
+              <TextInputField 
+                content={this.state.email}
                 label="email"
                 name="email"
                 value={this.state.email}
                 handleChange={this.handleChange}
               />
               <TextInputField 
+                content={this.state.address}
                 label="address"
                 name="address"
                 value={this.state.address}
                 handleChange={this.handleChange}
               />
               <TextInputField 
+                content={this.state.city}
                 label="city"
                 name="city"
-                value={this.state.lastName}
+                value={this.state.city}
                 handleChange={this.handleChange}
               />
               <TextInputField 
+                content={this.state.state}
                 label="state"
-                name="zipCode"
-                value={this.state.lastName}
+                name="state"
+                value={this.state.state}
                 handleChange={this.handleChange}
               />
-        </form>
-  
-  )
-}
+              <TextInputField 
+                content={this.state.zipCode}
+                label="zip code"
+                name="zipCode"
+                value={this.state.zipCode}
+                handleChange={this.handleChange}
+              />
+          
+            <input className="btn btn-success mb-2" type="submit" value="Submit" />
+        </form> 
+    )
+  }
 }
 
 export default ContactFormContainer
