@@ -22,9 +22,9 @@ class ContactFormContainer extends Component {
   }
 
   handleChange(event) {
-    let value = event.target.value;
-    let name = event.target.name;
-    this.setState({ [name]: value });
+    this.setState({ 
+      [event.target.name]: event.target.value 
+    });
   }
 
   handleSubmit(event){
@@ -57,10 +57,10 @@ class ContactFormContainer extends Component {
     })
   }
 
+
   render() {
     return (
         <form className="container" onSubmit={this.handleSubmit}>
-            <h2>All Contacts</h2>
               <TextInputField 
                 content={this.state.firstName}
                 label="First Name"

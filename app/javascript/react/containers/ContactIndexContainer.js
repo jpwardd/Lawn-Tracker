@@ -6,12 +6,14 @@ class ContactIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: []
-    };
+      contacts: [],
+      formToggle: true
+    }
+    this.formToggle = this.formToggle.bind(this)
   }
 
   componentDidMount() {
-    fetch("/api/v1/contacts")
+    fetch("/api/v1/contacts.json")
       .then(response => {
         if (response.ok) {
           return response;
@@ -34,7 +36,7 @@ class ContactIndexContainer extends Component {
   }
 
   addNewContact(formPayload) {
-    fetch("/api/v1/contacts", {
+    fetch("/api/v1/contacts.json", {
       method: "post",
       body: JSON.stringify(formPayload)
     })
@@ -53,6 +55,13 @@ class ContactIndexContainer extends Component {
          this.setState({ contacts: [...this.state.contacts, body] })
        })
        .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  // form toggle handler
+  formToggle() {
+    this.setState({
+      formToggle: !this.state.formToggle
+    })
   }
 
   render() {
@@ -74,9 +83,14 @@ class ContactIndexContainer extends Component {
     })
     return (
       <div>
+      <h2>All Contacts</h2>
+      <button className="btn btn-success mb-2" onClick={this.formToggle}>
+        + add new contact
+      </button>
+        {!this.state.formToggle &&
         <ContactFormContainer 
           addNewContact={this.addNewContact}
-        />
+        />}
         {contacts}
       </div>
     )
