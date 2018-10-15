@@ -7,7 +7,8 @@ class ContactIndexContainer extends Component {
     super(props);
     this.state = {
       contacts: [],
-      formToggle: true
+      formToggle: true,
+      
     }
     this.formToggle = this.formToggle.bind(this)
   }
@@ -64,6 +65,8 @@ class ContactIndexContainer extends Component {
     })
   }
 
+  
+
   render() {
     let contacts = this.state.contacts.map((contact) => {
       return(
@@ -85,12 +88,13 @@ class ContactIndexContainer extends Component {
       <div>
       <h2>All Contacts</h2>
       <button className="btn btn-success mb-2" onClick={this.formToggle}>
-        + add new contact
+        add new contact
       </button>
         {!this.state.formToggle &&
         <ContactFormContainer 
           addNewContact={this.addNewContact}
         />}
+        
         {contacts}
       </div>
     )

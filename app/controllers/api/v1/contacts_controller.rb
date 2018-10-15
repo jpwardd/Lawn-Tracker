@@ -4,6 +4,7 @@ class Api::V1::ContactsController < ApplicationController
   end
 
   def create
+    binding.pry
     @contact = Contact.create(contact_params)
     render json: @contact
   end

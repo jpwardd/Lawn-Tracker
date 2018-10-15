@@ -42,6 +42,7 @@ class ContactFormContainer extends Component {
     }
     this.props.addNewContact(formPayload);
     this.handleClearForm();
+    console.log(formPayload)
   }
 
    handleClearForm(){
@@ -59,6 +60,7 @@ class ContactFormContainer extends Component {
 
 
   render() {
+    console.log(this.formPayload)
     return (
         <form className="container" onSubmit={this.handleSubmit}>
               <TextInputField 
