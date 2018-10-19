@@ -8,9 +8,10 @@ class ContactIndexContainer extends Component {
     this.state = {
       contacts: [],
       formToggle: true,
-      
     }
     this.formToggle = this.formToggle.bind(this)
+    this.addNewContact = this.addNewContact.bind(this)
+
   }
 
   componentDidMount() {
@@ -55,7 +56,7 @@ class ContactIndexContainer extends Component {
       .then(response => response.json())
       .then(body => {
         console.log(body);
-        this.setState({ contacts: [...this.state.contacts, body] });
+        this.setState({ contacts: this.state.contacts.concat(body) });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -71,6 +72,7 @@ class ContactIndexContainer extends Component {
 
   render() {
     let contacts = this.state.contacts.map((contact) => {
+
       return(
         <ContactTile 
           key={contact.id}

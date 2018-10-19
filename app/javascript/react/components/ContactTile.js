@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const ContactTile = (props) => {
-
   return(
     <div className="mb-5 card mx-auto container bg-dark">
       <div className="card-body">
