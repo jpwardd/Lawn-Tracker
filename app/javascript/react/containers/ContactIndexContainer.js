@@ -1,6 +1,21 @@
 import React, { Component } from 'react'
 import ContactFormContainer from './ContactFormContainer'
 import ContactTile from '../components/ContactTile'
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid"
+import TextField from "@material-ui/core/TextField"
+import BottomNav from "../components/BottomNav"
+import GridListTile from "@material-ui/core/GridListTile";
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import InboxIcon from '@material-ui/icons/Inbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+
+
 
 class ContactIndexContainer extends Component {
   constructor(props) {
@@ -8,6 +23,7 @@ class ContactIndexContainer extends Component {
     this.state = {
       contacts: [],
       formToggle: true,
+      contactToggle: true
     }
     this.formToggle = this.formToggle.bind(this)
     this.addNewContact = this.addNewContact.bind(this)
@@ -68,38 +84,46 @@ class ContactIndexContainer extends Component {
     })
   }
 
-  
+ 
 
   render() {
     let contacts = this.state.contacts.map((contact) => {
-
-      return(
-        <ContactTile 
-          key={contact.id}
-          id={contact.id}
-          firstName={contact.first_name}
-          lastName={contact.last_name}
-          phoneNumber={contact.phone_number}
-          email={contact.email}
-          address={contact.address}
-          city={contact.city}
-          state={contact.state}
-          zipCode={contact.zip_code}
-        />
+      let contactChange = () => {
+        this.contactToggle
+      }
+      return (
+        <div>
+          <List component="nav">
+              <ContactTile 
+                key={contact.id}
+                id={contact.id}
+                firstName={contact.first_name}
+                lastName={contact.last_name}
+                phoneNumber={contact.phone_number}
+                email={contact.email}
+                address={contact.address}
+                city={contact.city}
+                state={contact.state}
+                zipCode={contact.zip_code}
+                contactChange={contactChange}
+              />
+          </List>
+        </div>
       )
     })
     return (
       <div>
-      <h2>All Contacts</h2>
-      <button className="btn btn-success mb-2" onClick={this.formToggle}>
+      <Button variant="contained" color="primary" onClick={this.formToggle}>
         add new contact
-      </button>
+      </Button>
         {!this.state.formToggle &&
         <ContactFormContainer 
           addNewContact={this.addNewContact}
         />}
         
         {contacts}
+
+       <BottomNav />
       </div>
     )
   }

@@ -1,40 +1,49 @@
 import React from 'react'
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+});
+
 
 
 const ContactTile = (props) => {
+   const { classes } = props;
   return(
-    <div className="container">
-      <div className="row">
-        <div className="col-sm">
-        <ul className="list-group list-group-flush">
-          
-          <h6 className="text-white">first name:</h6>
-            <li className="list-group-item">{props.firstName}</li>
-          
-          <h6 className="text-white">last name:</h6>
-            <li className="list-group-item">{props.lastName}</li>
-          
-          <h6 className="text-dark">Phone:</h6>
-            <li className="list-group-item">{props.phoneNumber}</li>
-          
-          <h6 className="text-dark">Email:</h6>
-            <li className="list-group-item">{props.email}</li>
-          
-          <h6 className="text-dark">Address:</h6>
-            <li className="list-group-item">{props.address}</li>
-          
-          <h6 className="text-dark">City:</h6>
-            <li className="list-group-item">{props.city}</li>
-          
-          <h6 className="text-dark">state</h6>
-            <li className="list-group-item">{props.state}</li>
-          
-          <h6 className="text-dark">Zip Code:</h6>
-            <li className="list-group-item">{props.zipCode}</li>
-        </ul>
-        </div>
-      </div>
-    </div>
+    <List component="nav">
+      <ListItem>
+        {props.firstName}
+      </ListItem>
+      <ListItem>
+        {props.lastName}
+      </ListItem>
+      <ListItem>
+        {props.phoneNumber}
+      </ListItem>
+      <ListItem>
+        {props.email}
+      </ListItem>
+      <ListItem>
+        {props.address}
+      </ListItem>
+      <ListItem>
+        {props.city}
+      </ListItem>
+      <ListItem>
+        {props.state}
+      </ListItem>
+      <ListItem>
+        {props.zip}
+      </ListItem>
+{props.children}
+    </List>
+  
   )
 }
 

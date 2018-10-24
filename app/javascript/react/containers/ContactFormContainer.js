@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextInputField from '../components/TextInputField'
-
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 
 class ContactFormContainer extends Component {
   constructor(props) {
@@ -14,20 +15,14 @@ class ContactFormContainer extends Component {
       city: "",
       state: "",
       zipCode: ""
-
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ 
-      [event.target.name]: event.target.value 
-    });
-  }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault();
 
     let formPayload = {
@@ -39,13 +34,13 @@ class ContactFormContainer extends Component {
       city: this.state.city,
       state: this.state.state,
       zip_code: +this.state.zipCode
-    }
+    };
     this.props.addNewContact(formPayload);
     this.handleClearForm();
-    console.log(formPayload)
+    console.log(formPayload);
   }
 
-   handleClearForm(){
+  handleClearForm() {
     this.setState({
       firstName: "",
       lastName: "",
@@ -55,74 +50,79 @@ class ContactFormContainer extends Component {
       city: "",
       state: "",
       zipCode: ""
-    })
+    });
   }
 
+  handleChange = name => event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
   render() {
-    console.log(this.formPayload)
+    console.log(this.formPayload);
     return (
-        <form className="container" onSubmit={this.handleSubmit}>
-              <TextInputField 
-                content={this.state.firstName}
-                label="First Name"
-                name="firstName"
-                value={this.state.firstName}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.lastName}
-                label="last Name"
-                name="lastName"
-                value={this.state.lastName}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.phoneNumber}
-                label="phone number"
-                name="phoneNumber"
-                value={this.state.phoneNumber}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.email}
-                label="email"
-                name="email"
-                value={this.state.email}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.address}
-                label="address"
-                name="address"
-                value={this.state.address}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.city}
-                label="city"
-                name="city"
-                value={this.state.city}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.state}
-                label="state"
-                name="state"
-                value={this.state.state}
-                handleChange={this.handleChange}
-              />
-              <TextInputField 
-                content={this.state.zipCode}
-                label="zip code"
-                name="zipCode"
-                value={this.state.zipCode}
-                handleChange={this.handleChange}
-              />
-          
-            <input className="btn btn-success mb-2" type="submit" value="Submit" />
-        </form> 
-    )
+      <form className="container" onSubmit={this.handleSubmit}>
+        <TextField
+          content={this.state.firstName}
+          label="First Name"
+          name="firstName"
+          value={this.state.firstName}
+           onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.lastName}
+          label="last Name"
+          name="lastName"
+          value={this.state.lastName}
+          onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.phoneNumber}
+          label="phone number"
+          name="phoneNumber"
+          value={this.state.phoneNumber}
+          onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.email}
+          label="email"
+          name="email"
+          value={this.state.email}
+          onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.address}
+          label="address"
+          name="address"
+          value={this.state.address}
+          onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.city}
+          label="city"
+          name="city"
+          value={this.state.city}
+          onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.state}
+          label="state"
+          name="state"
+          value={this.state.state}
+          onChange={this.handleChange('name')}
+        />
+        <TextField
+          content={this.state.zipCode}
+          label="zip code"
+          name="zipCode"
+          value={this.state.zipCode}
+          onChange={this.handleChange('name')}
+        />
+
+        <input className="btn btn-success mb-2" type="submit" value="Submit" />
+      </form>
+    );
   }
 }
 

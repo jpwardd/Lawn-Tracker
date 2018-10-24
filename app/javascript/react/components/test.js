@@ -1,0 +1,13 @@
+<ContactTile
+  key={contact.id}
+  id={contact.id}
+  firstName={contact.first_name}
+  lastName={contact.last_name}
+  phoneNumber={contact.phone_number}
+  email={contact.email}
+  address={contact.address}
+  city={contact.city}
+  state={contact.state}
+  zipCode={contact.zip_code}
+  contactChange={contactChange}
+/>;
