@@ -120,10 +120,7 @@ class ContactIndexContainer extends Component {
         <ContactFormContainer 
           addNewContact={this.addNewContact}
         />}
-        
         {contacts}
-
-       <BottomNav />
       </div>
     )
   }
