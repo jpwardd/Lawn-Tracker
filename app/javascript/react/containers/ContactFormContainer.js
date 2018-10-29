@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import TextInputField from '../components/TextInputField'
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List"
+
 
 class ContactFormContainer extends Component {
   constructor(props) {
@@ -59,68 +61,93 @@ class ContactFormContainer extends Component {
     });
   };
 
+  
+
   render() {
-    console.log(this.formPayload);
+  console.log(this.props)
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <TextField
+         
           content={this.state.firstName}
-          label="First Name"
           name="firstName"
+          label="First name"
           value={this.state.firstName}
-           onChange={this.handleChange('name')}
+          onChange={this.handleChange('name')}
+          
+          
         />
         <TextField
           content={this.state.lastName}
-          label="last Name"
+         
           name="lastName"
+          label="Last Name"
           value={this.state.lastName}
           onChange={this.handleChange('name')}
+          
+          
         />
         <TextField
           content={this.state.phoneNumber}
-          label="phone number"
+         
+          label="Phone Number"
           name="phoneNumber"
           value={this.state.phoneNumber}
           onChange={this.handleChange('name')}
+          margin="normal"
+          
         />
         <TextField
           content={this.state.email}
+         
           label="email"
           name="email"
           value={this.state.email}
           onChange={this.handleChange('name')}
+          margin="normal"
+          
         />
         <TextField
           content={this.state.address}
+         
           label="address"
           name="address"
           value={this.state.address}
           onChange={this.handleChange('name')}
+          
+          
         />
         <TextField
           content={this.state.city}
+         
           label="city"
           name="city"
           value={this.state.city}
           onChange={this.handleChange('name')}
+        
         />
         <TextField
           content={this.state.state}
+         
           label="state"
           name="state"
           value={this.state.state}
           onChange={this.handleChange('name')}
+          
+          
         />
         <TextField
           content={this.state.zipCode}
+         
           label="zip code"
           name="zipCode"
           value={this.state.zipCode}
           onChange={this.handleChange('name')}
+          
+          
         />
 
-        <input className="btn btn-success mb-2" type="submit" value="Submit" />
+        <input type="submit" value="Submit" />
       </form>
     );
   }
