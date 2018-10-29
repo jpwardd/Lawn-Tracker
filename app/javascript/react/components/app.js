@@ -10,7 +10,6 @@ import NavBar from './NavBar';
 
 export const App = (props) => {
   return (
-   
       <Router history={browserHistory}>
         <Route path="/" component={NavBar}>
         <IndexRoute component={MainContentContainer} />

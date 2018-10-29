@@ -16,6 +16,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import MainContentContainer from "../containers/MainContentContainer"
 
 import ContactTile from '../components/ContactTile'
 
@@ -58,7 +59,6 @@ class ResponsiveDrawer extends React.Component {
   state = {
     mobileOpen: false,
     contacts: [],
-   
     contactId: null
   };
 
@@ -78,8 +78,8 @@ class ResponsiveDrawer extends React.Component {
         }
       })
       .then(response => {
-        console.log("response.status:", response.status);
-        console.log("response.statusText:", response.statusText);
+        // console.log("response.status:", response.status);
+        // console.log("response.statusText:", response.statusText);
         return response.json();
       })
       .then(data => {
@@ -174,6 +174,7 @@ class ResponsiveDrawer extends React.Component {
             </Drawer>
           </Hidden>
         </nav>
+        {this.props.children}
       </div>
     );
   }
