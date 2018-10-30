@@ -10,22 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_13_164726) do
+ActiveRecord::Schema.define(version: 2018_10_30_114105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string "first_name", null: false
-    t.string "last_name"
-    t.bigint "phone_number", null: false
-    t.string "email", null: false
-    t.string "address", null: false
-    t.string "city", null: false
-    t.string "state", null: false
-    t.integer "zip_code", null: false
+    t.string "last_name", null: false
+    t.string "phone_number", null: false
+    t.string "email"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.bigint "jobs_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["jobs_id"], name: "index_customers_on_jobs_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "user_id"
+    t.date "job_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_jobs_on_customer_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

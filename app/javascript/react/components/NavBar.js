@@ -18,7 +18,14 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import MainContentContainer from "../containers/MainContentContainer"
 
+import { Droppable } from 'react-beautiful-dnd'
 import ContactTile from '../components/ContactTile'
+import Monday from '../components/Monday'
+import Tuesday from '../components/Tuesday'
+import Wednesday from '../components/Wednesday'
+import Thursday from '../components/Thursday'
+import Friday from '../components/Friday'
+import Saturday from '../components/Saturday'
 
 const drawerWidth = 240;
 
@@ -59,6 +66,7 @@ class ResponsiveDrawer extends React.Component {
   state = {
     mobileOpen: false,
     contacts: [],
+    jobList: [],
     contactId: null
   };
 
@@ -67,7 +75,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   componentDidMount() {
-    fetch("/api/v1/contacts.json")
+    fetch("/api/v1/customers.json")
       .then(response => {
         if (response.ok) {
           return response;
@@ -88,13 +96,14 @@ class ResponsiveDrawer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+
   showFullContactHandler(id){
     if(id === this.state.contactId){
       this.setState(state => ({ contactId: null }));      
-    }else{
+    } else {
       this.setState(state => ({ contactId: id }))
     }
-  }
+  }   
 
   render() {
     const { classes, theme } = this.props;
@@ -124,9 +133,10 @@ class ResponsiveDrawer extends React.Component {
         </div>
       );
     });
-
+    
     return (
       <div className={classes.root}>
+      {this.props.children}
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar} color="default">
           <Toolbar>
@@ -159,7 +169,9 @@ class ResponsiveDrawer extends React.Component {
                 keepMounted: true
               }}
             >
+            
               {contacts}
+      
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
@@ -174,7 +186,16 @@ class ResponsiveDrawer extends React.Component {
             </Drawer>
           </Hidden>
         </nav>
-        {this.props.children}
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Monday />
+          <Tuesday />
+          <Wednesday />
+          <Thursday />
+          <Friday />
+          <Saturday />
+          
+        </main>
       </div>
     );
   }

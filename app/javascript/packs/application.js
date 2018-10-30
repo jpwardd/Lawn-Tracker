@@ -31,10 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     else {
       render(
-        <MuiThemeProvider theme={theme}>
-          
+        
           <App />
-        </MuiThemeProvider>, 
+        , 
         reactElement
       )
     }

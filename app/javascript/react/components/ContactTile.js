@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper"
 
 
 
+
 const ContactTile = (props) => { 
   if (props.contactId != props.id) {
     return (
@@ -36,6 +37,10 @@ const ContactTile = (props) => {
           </ListItem>
           
           <ListItem>
+            {props.phoneNumber}
+          </ListItem>
+          
+          <ListItem>
             {props.city}
           </ListItem>
           
@@ -46,6 +51,7 @@ const ContactTile = (props) => {
           <ListItem>
             {props.zip}
           </ListItem>
+          <button>add to job list</button>
         </Paper>
       </div>
     )
