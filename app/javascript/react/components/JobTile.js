@@ -38,7 +38,7 @@ function JobTile(props) {
             {props.city}, {props.state} {props.zipCode}.
           </Typography>
           <Typography component="p">
-            {formattedDate}
+            {props.date}
           </Typography>
 
         </CardContent>

@@ -16,11 +16,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import MainContentContainer from "../containers/MainContentContainer"
+import MainContentContainer from "../containers/MainContentContainer";
 
-import { Droppable } from 'react-beautiful-dnd'
-import ContactTile from '../components/ContactTile'
-import JobList from '../components/JobList'
+import { Droppable } from "react-beautiful-dnd";
+import ContactTile from "../components/ContactTile";
+import FormModal from "../components/FormModal"
+import JobList from "../components/JobList";
 
 const drawerWidth = 240;
 
@@ -56,19 +57,17 @@ const styles = theme => ({
   }
 });
 
-
-
 class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       mobileOpen: false,
       customers: [],
-      jobs:[],
+      jobs: [],
       customerId: null
-    }
-  this.addNewJob = this.addNewJob.bind(this)
-}
+    };
+    this.addNewJob = this.addNewJob.bind(this);
+  }
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
@@ -97,9 +96,7 @@ class ResponsiveDrawer extends React.Component {
   }
 
   addNewJob(formPayLoad) {
-    
-    
-    fetch(`/api/v1/customers/${this.state.customer.id}/jobs`, {
+    fetch(`/api/v1/jobs`, {
       method: "post",
       body: JSON.stringify(formPayLoad),
       headers: {
@@ -108,24 +105,23 @@ class ResponsiveDrawer extends React.Component {
       },
       credentials: "same-origin"
     })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw error;
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      let newJobs = this.state.jobs.concat(body);
-      this.setState({ jobs: newJobs });
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let newJobs = this.state.jobs.concat(body);
+        this.setState({ jobs: newJobs });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-  
-  
+
   showFullCustomerHandler(id) {
     if (id === this.state.customerId) {
       this.setState(state => ({ customerId: null }));
@@ -133,18 +129,18 @@ class ResponsiveDrawer extends React.Component {
       this.setState(state => ({ customerId: id }));
     }
   }
-  
+
   render() {
     const { classes, theme } = this.props;
-    
+
     const customers = this.state.customers.map(customer => {
       let showFullCustomer = event => {
         this.showFullCustomerHandler(customer.id);
       };
 
-      let newJob = (formPayLoad) => {
-        this.addNewJob(formPayLoad)
-      }
+      let newJob = formPayLoad => {
+        this.addNewJob(formPayLoad);
+      };
       return (
         <div>
           <List>
@@ -203,6 +199,9 @@ class ResponsiveDrawer extends React.Component {
               }}
             >
               {customers}
+              <FormModal 
+
+              />
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
@@ -214,14 +213,15 @@ class ResponsiveDrawer extends React.Component {
               open
             >
               {customers}
+              <FormModal 
+                
+              />
             </Drawer>
           </Hidden>
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <JobList 
-            jobs={this.state.jobs} 
-          />
+          <JobList jobs={this.state.jobs} />
         </main>
       </div>
     );

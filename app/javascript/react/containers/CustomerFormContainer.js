@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import TextInputField from '../components/TextInputField'
+import React, { Component } from "react";
+import TextInputField from "../components/TextInputField";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List"
-
+import List from "@material-ui/core/List";
 
 class CustomerFormContainer extends Component {
   constructor(props) {
@@ -22,7 +21,6 @@ class CustomerFormContainer extends Component {
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
 
   handleSubmit(event) {
     event.preventDefault();
@@ -61,96 +59,90 @@ class CustomerFormContainer extends Component {
     });
   };
 
-  
-
   render() {
-  console.log(this.props)
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <TextField
-         
+          variant="standard"
           content={this.state.firstName}
           name="firstName"
-          label="First name"
+          label="First Name"
           value={this.state.firstName}
-          onChange={this.handleChange('name')}
-          
-          
+          onChange={this.handleChange("name")}
+          fullWidth
         />
         <TextField
+          variant="standard"
           content={this.state.lastName}
-         
           name="lastName"
           label="Last Name"
           value={this.state.lastName}
-          onChange={this.handleChange('name')}
-          
-          
+          onChange={this.handleChange("name")}
+          fullWidth
         />
         <TextField
           content={this.state.phoneNumber}
-         
+          variant="standard"
           label="Phone Number"
           name="phoneNumber"
           value={this.state.phoneNumber}
-          onChange={this.handleChange('name')}
+          onChange={this.handleChange("name")}
           margin="normal"
-          
+          fullWidth
         />
         <TextField
           content={this.state.email}
-         
+          variant="standard"
           label="email"
           name="email"
           value={this.state.email}
-          onChange={this.handleChange('name')}
+          onChange={this.handleChange("name")}
           margin="normal"
-          
+          fullWidth
         />
         <TextField
           content={this.state.address}
-         
+          variant="standard"
           label="address"
           name="address"
           value={this.state.address}
-          onChange={this.handleChange('name')}
-          
-          
+          onChange={this.handleChange("name")}
+          fullWidth
         />
         <TextField
           content={this.state.city}
-         
+          variant="standard"
           label="city"
           name="city"
           value={this.state.city}
-          onChange={this.handleChange('name')}
-        
+          onChange={this.handleChange("name")}
+          fullWidth
         />
         <TextField
           content={this.state.state}
-         
+          variant="standard"
           label="state"
           name="state"
           value={this.state.state}
-          onChange={this.handleChange('name')}
-          
-          
+          onChange={this.handleChange("name")}
+          fullWidth
         />
         <TextField
           content={this.state.zipCode}
-         
+          variant="standard"
           label="zip code"
           name="zipCode"
           value={this.state.zipCode}
-          onChange={this.handleChange('name')}
-          
-          
+          onChange={this.handleChange("name")}
+          fullWidth
         />
 
-        <input type="submit" value="Submit" />
+        <button type="submit" value="Submit">
+          Add Customer
+        </button>
       </form>
     );
   }
 }
 
-export default CustomerFormContainer
+export default CustomerFormContainer;
