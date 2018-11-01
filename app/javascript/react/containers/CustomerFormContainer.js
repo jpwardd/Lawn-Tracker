@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List"
 
 
-class ContactFormContainer extends Component {
+class CustomerFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,12 +30,12 @@ class ContactFormContainer extends Component {
     let formPayload = {
       first_name: this.state.firstName,
       last_name: this.state.lastName,
-      phone_number: +this.state.phoneNumber,
+      phone_number: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
       city: this.state.city,
       state: this.state.state,
-      zip_code: +this.state.zipCode
+      zip_code: this.state.zipCode
     };
     this.props.addNewContact(formPayload);
     this.handleClearForm();
@@ -153,4 +153,4 @@ class ContactFormContainer extends Component {
   }
 }
 
-export default ContactFormContainer
+export default CustomerFormContainer

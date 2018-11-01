@@ -20,12 +20,7 @@ import MainContentContainer from "../containers/MainContentContainer"
 
 import { Droppable } from 'react-beautiful-dnd'
 import ContactTile from '../components/ContactTile'
-import Monday from '../components/Monday'
-import Tuesday from '../components/Tuesday'
-import Wednesday from '../components/Wednesday'
-import Thursday from '../components/Thursday'
-import Friday from '../components/Friday'
-import Saturday from '../components/Saturday'
+import JobList from '../components/JobList'
 
 const drawerWidth = 240;
 
@@ -62,20 +57,25 @@ const styles = theme => ({
 });
 
 
+
 class ResponsiveDrawer extends React.Component {
-  state = {
-    mobileOpen: false,
-    contacts: [],
-    jobList: [],
-    contactId: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      mobileOpen: false,
+      customers: [],
+      jobs:[],
+      customerId: null
+    }
+  this.addNewJob = this.addNewJob.bind(this)
+}
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   componentDidMount() {
-    fetch("/api/v1/customers.json")
+    fetch(`/api/v1/customers.json`)
       .then(response => {
         if (response.ok) {
           return response;
@@ -91,52 +91,86 @@ class ResponsiveDrawer extends React.Component {
         return response.json();
       })
       .then(data => {
-        this.setState({ contacts: data });
+        this.setState({ customers: data });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
-  showFullContactHandler(id){
-    if(id === this.state.contactId){
-      this.setState(state => ({ contactId: null }));      
+  addNewJob(formPayLoad) {
+    
+    
+    fetch(`/api/v1/customers/${this.state.customer.id}/jobs`, {
+      method: "post",
+      body: JSON.stringify(formPayLoad),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw error;
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let newJobs = this.state.jobs.concat(body);
+      this.setState({ jobs: newJobs });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+  
+  
+  showFullCustomerHandler(id) {
+    if (id === this.state.customerId) {
+      this.setState(state => ({ customerId: null }));
     } else {
-      this.setState(state => ({ contactId: id }))
+      this.setState(state => ({ customerId: id }));
     }
-  }   
-
+  }
+  
   render() {
     const { classes, theme } = this.props;
     
-    const contacts = this.state.contacts.map((contact) => {
-      let showFullContact = (event) => {
-          this.showFullContactHandler(contact.id);
+    const customers = this.state.customers.map(customer => {
+      let showFullCustomer = event => {
+        this.showFullCustomerHandler(customer.id);
       };
+
+      let newJob = (formPayLoad) => {
+        this.addNewJob(formPayLoad)
+      }
       return (
         <div>
           <List>
             <ContactTile
-              key={contact.id}
-              id={contact.id}
-              firstName={contact.first_name}
-              lastName={contact.last_name}
-              phoneNumber={contact.phone_number}
-              email={contact.email}
-              address={contact.address}
-              city={contact.city}
-              state={contact.state}
-              zipCode={contact.zip_code}
-              showFullContact={showFullContact}
-              contactId={this.state.contactId}
+              key={customer.id}
+              id={customer.id}
+              firstName={customer.first_name}
+              lastName={customer.last_name}
+              phoneNumber={customer.phone_number}
+              email={customer.email}
+              address={customer.address}
+              city={customer.city}
+              state={customer.state}
+              zipCode={customer.zip_code}
+              showFullCustomer={showFullCustomer}
+              customerId={this.state.customerId}
+              newJob={newJob}
             />
           </List>
         </div>
       );
     });
-    
+
     return (
       <div className={classes.root}>
-      {this.props.children}
+        {this.props.children}
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar} color="default">
           <Toolbar>
@@ -154,7 +188,6 @@ class ResponsiveDrawer extends React.Component {
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer}>
-          
           <Hidden smUp implementation="css">
             <Drawer
               container={this.props.container}
@@ -169,9 +202,7 @@ class ResponsiveDrawer extends React.Component {
                 keepMounted: true
               }}
             >
-            
-              {contacts}
-      
+              {customers}
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
@@ -182,19 +213,15 @@ class ResponsiveDrawer extends React.Component {
               variant="permanent"
               open
             >
-              {contacts}
+              {customers}
             </Drawer>
           </Hidden>
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Monday />
-          <Tuesday />
-          <Wednesday />
-          <Thursday />
-          <Friday />
-          <Saturday />
-          
+          <JobList 
+            jobs={this.state.jobs} 
+          />
         </main>
       </div>
     );

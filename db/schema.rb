@@ -24,16 +24,15 @@ ActiveRecord::Schema.define(version: 2018_10_30_114105) do
     t.string "city"
     t.string "state"
     t.string "zip_code"
-    t.bigint "jobs_id"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["jobs_id"], name: "index_customers_on_jobs_id"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "user_id"
-    t.date "job_date", null: false
+    t.datetime "job_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_jobs_on_customer_id"

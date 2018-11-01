@@ -19,3 +19,19 @@
 
 **Stripe Api** *** so that when a lawn / job is completed, I click the button a invoice is sent to the customer. 
 
+#M.V.P 
+
+***adding customers to a customer list 
+###steps to accomplish 
+1. making a form that has first name, last name, phone number, email, address, city, state, and zip notes 
+2. making sure that when the information changes the state and that it persists to the database. 
+3. models and the controllers have the right
+
+*** adding the customer to the job queue, from the job queue drag and drop the customer into the correct order route.
+1.using a material ui date picker
+2.making a button that take the contact id and and the date and stores it in the correct date and the database.
+***reocurring job schedules 
+***When the job is finished clicking a button that puts the customer to a finished list.
+***
+***
+***

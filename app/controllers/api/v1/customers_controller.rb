@@ -2,6 +2,7 @@ class Api::V1::CustomersController < ApplicationController
    protect_from_forgery unless: -> { request.format.json? }
 
   def index
+   
     render json: Customer.all
   end
 

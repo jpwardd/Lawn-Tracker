@@ -3,6 +3,6 @@ class Customer < ApplicationRecord
   validates :last_name, presence: true
   validates :phone_number, presence: true
   
-  
+  has_many :jobs
 end
 

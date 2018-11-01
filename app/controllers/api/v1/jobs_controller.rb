@@ -1,10 +1,15 @@
-class Api::V1::CustomersController < ApplicationController
+class Api::V1::JobsController < ApplicationController
    protect_from_forgery unless: -> { request.format.json? }
+
+  def index
+  
+    render json: Job.all
+  end
 
   def create
     job = Job.new(job_params)
 
-    if customer.save
+    if job.save
       render json: { job: job }
     else
       render json: { error: job.errors.full_messages }, status: unprocessable_entity
@@ -14,6 +19,6 @@ class Api::V1::CustomersController < ApplicationController
   private
 
   def job_params
-    params.require(:customer).permit(:customer_id, :user_id, :job_date) 
+    params.permit(:id, :customer_id, :user_id, :job_date) 
   end
 end
