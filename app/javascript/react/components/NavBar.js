@@ -18,10 +18,11 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import MainContentContainer from "../containers/MainContentContainer";
 
-import { Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import ContactTile from "../components/ContactTile";
 import FormModal from "../components/FormModal"
 import JobList from "../components/JobList";
+import styled from "styled-components"
 
 const drawerWidth = 240;
 
@@ -57,9 +58,17 @@ const styles = theme => ({
   }
 });
 
+const Container = styled.div`
+  border: 3px solid lightgrey;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+`;
+
 class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
+    this.innerRef = React.createRef()
     this.state = {
       mobileOpen: false,
       customers: [],
@@ -67,7 +76,11 @@ class ResponsiveDrawer extends React.Component {
       customerId: null
     };
     this.addNewJob = this.addNewJob.bind(this);
-  
+    this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  onDragEnd(result){
+   
   }
 
   handleDrawerToggle = () => {
@@ -117,7 +130,8 @@ class ResponsiveDrawer extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ jobs: [...this.state.jobs, body] });
+        
+        this.setState({ jobs: [...this.state.jobs, data] });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -131,19 +145,19 @@ class ResponsiveDrawer extends React.Component {
   }
 
   
-
+  
   render() {
     const { classes, theme } = this.props;
-
+    
     const customers = this.state.customers.map(customer => {
       let showFullCustomer = event => {
         this.showFullCustomerHandler(customer.id);
       };
-
+      
       let newJob = formPayLoad => {
         this.addNewJob(formPayLoad);
       };
-
+      
       
       return (
         <div>
@@ -167,8 +181,9 @@ class ResponsiveDrawer extends React.Component {
         </div>
       );
     });
-
+    
     return (
+    <DragDropContext onDragEnd={this.onDragEnd}>
       <div className={classes.root}>
         {this.props.children}
         <CssBaseline />
@@ -223,11 +238,24 @@ class ResponsiveDrawer extends React.Component {
             </Drawer>
           </Hidden>
         </nav>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <JobList jobs={this.state.jobs} />
-        </main>
+        <Container innerRef={this.innerRef}>
+          <Droppable droppableId={this.state.customers.id}>
+          {(provided) => (
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <JobList 
+              innerRef={provided.innerRef}
+              {...provided.droppableProps}
+              jobs={this.state.jobs} 
+
+            />
+            {provided.placeholder}
+          </main>
+            )}
+          </Droppable>
+        </Container>
       </div>
+        </DragDropContext>
     );
   }
 }

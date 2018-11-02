@@ -45,3 +45,26 @@ componentDidMount() {
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+
+
+
+  let jobs = this.state.jobs.map((job) => {
+      return(
+        <Fragment>
+          
+            <JobTile
+              key={job.id}
+              date={job.job_date}
+              firstName={job.customer.first_name}
+              lastName={job.customer.last_name}
+              phoneNumber={job.customer.phone_number}
+              address={job.customer.address}
+              city={job.customer.city}
+        
+              state={job.customer.state}
+              zipCode={job.customer.zip_code}
+              notes={job.customer.notes}
+            /> 
+        </Fragment>
+      )
+    })

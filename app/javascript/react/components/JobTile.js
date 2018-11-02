@@ -9,9 +9,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
+
 const styles = {
   card: {
     maxWidth: 345,
+    margin: 8,
   },
   media: {
     height: 140,

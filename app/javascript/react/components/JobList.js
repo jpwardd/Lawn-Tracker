@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import JobTile from '../components/JobTile'
-
+import { Droppable } from "react-beautiful-dnd"
 
 const Container = styled.div`
   border: 3px solid lightgrey; 
@@ -44,28 +44,34 @@ export default class JobList extends Component {
   
   
   render() {
+    
     let jobs = this.state.jobs.map((job) => {
       return(
-        <Fragment>
-          <JobTile
-            key={job.id}
-            date={job.job_date}
-            firstName={job.customer.first_name}
-            lastName={job.customer.last_name}
-            phoneNumber={job.customer.phone_number}
-            address={job.customer.address}
-            city={job.customer.city}
-            state={job.customer.state}
-            zipCode={job.customer.zip_code}
-            notes={job.customer.notes}
-          /> 
+      <Fragment>
+            <JobTile
+              key={job.id}
+              date={job.job_date}
+              firstName={job.customer.first_name}
+              lastName={job.customer.last_name}
+              phoneNumber={job.customer.phone_number}
+              address={job.customer.address}
+              city={job.customer.city}
+        
+              state={job.customer.state}
+              zipCode={job.customer.zip_code}
+              notes={job.customer.notes}
+            /> 
+  
         </Fragment>
       )
     })
     return (
       <Fragment>
-        {jobs}
+     
         
+      {jobs}
+    
+    
       </Fragment>
 
     )
