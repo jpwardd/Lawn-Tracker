@@ -23,10 +23,6 @@ function JobTile(props) {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-         
-        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.firstName} {props.lastName}
