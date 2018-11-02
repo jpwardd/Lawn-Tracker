@@ -10,9 +10,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CustomerFormContainer from "../containers/CustomerFormContainer"
 
 export default class FormDialog extends React.Component {
-  state = {
-    open: false,
+  constructor(props){
+    super(props)
+    this.state = {
+      open: false,
+      customers: this.props.customers
   };
+}
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -23,6 +27,7 @@ export default class FormDialog extends React.Component {
   };
   
 
+  
   addNewCustomer(formPayLoad) {
     fetch(`/api/v1/customers`, {
       method: "post",
@@ -44,16 +49,17 @@ export default class FormDialog extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newContacts = this.props.customers.concat(body);
-        this.setState({ jobs: newContacts });
+      
+        this.setState({ customers: [...this.props.customers, body] });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+
   render() {
     return (
       <div>
-        <button onClick={this.handleClickOpen}>Add New Customer</button>
+        <button className="success" onClick={this.handleClickOpen}>Add New Customer</button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -63,12 +69,10 @@ export default class FormDialog extends React.Component {
           <DialogContent>
             
            <CustomerFormContainer 
-              addNewContact={this.addNewContact}
+              addNewCustomer={this.addNewCustomer}
             />
           </DialogContent>
-          <DialogActions>
-            <button onClick={this.handleClose}>Cancel</button>
-          </DialogActions>
+  
         </Dialog>
       </div>
     );

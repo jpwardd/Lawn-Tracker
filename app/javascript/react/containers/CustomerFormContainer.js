@@ -35,7 +35,7 @@ class CustomerFormContainer extends Component {
       state: this.state.state,
       zip_code: this.state.zipCode
     };
-    this.props.addNewContact(formPayload);
+    this.props.addNewCustomer(formPayload);
     this.handleClearForm();
     console.log(formPayload);
   }
@@ -137,7 +137,7 @@ class CustomerFormContainer extends Component {
           fullWidth
         />
 
-        <button type="submit" value="Submit">
+        <button className="success" type="submit" value="Submit">
           Add Customer
         </button>
       </form>

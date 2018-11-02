@@ -67,6 +67,7 @@ class ResponsiveDrawer extends React.Component {
       customerId: null
     };
     this.addNewJob = this.addNewJob.bind(this);
+  
   }
 
   handleDrawerToggle = () => {
@@ -116,8 +117,7 @@ class ResponsiveDrawer extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newJobs = this.state.jobs.concat(body);
-        this.setState({ jobs: newJobs });
+        this.setState({ jobs: [...this.state.jobs, body] });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -130,6 +130,8 @@ class ResponsiveDrawer extends React.Component {
     }
   }
 
+  
+
   render() {
     const { classes, theme } = this.props;
 
@@ -141,6 +143,8 @@ class ResponsiveDrawer extends React.Component {
       let newJob = formPayLoad => {
         this.addNewJob(formPayLoad);
       };
+
+      
       return (
         <div>
           <List>
@@ -200,7 +204,7 @@ class ResponsiveDrawer extends React.Component {
             >
               {customers}
               <FormModal 
-
+                addNewCustomer={this.state.customers}
               />
             </Drawer>
           </Hidden>
@@ -214,7 +218,7 @@ class ResponsiveDrawer extends React.Component {
             >
               {customers}
               <FormModal 
-                
+                addNewCustomer={this.state.cu}
               />
             </Drawer>
           </Hidden>

@@ -20,7 +20,6 @@ export default class JobList extends Component {
   }
 
   componentDidMount() {
-    
     fetch("/api/v1/jobs.json")
       .then(response => {
         if (response.ok) {
