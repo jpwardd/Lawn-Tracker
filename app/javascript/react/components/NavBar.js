@@ -68,7 +68,6 @@ const Container = styled.div`
 class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
-    this.innerRef = React.createRef()
     this.state = {
       mobileOpen: false,
       customers: [],
@@ -147,8 +146,10 @@ class ResponsiveDrawer extends React.Component {
   
   
   render() {
-    const { classes, theme } = this.props;
-    
+    const { classes, theme, provided, innerRef } = this.props;
+
+
+
     const customers = this.state.customers.map(customer => {
       let showFullCustomer = event => {
         this.showFullCustomerHandler(customer.id);
@@ -238,22 +239,12 @@ class ResponsiveDrawer extends React.Component {
             </Drawer>
           </Hidden>
         </nav>
-        <Container innerRef={this.innerRef}>
-          <Droppable droppableId={this.state.customers.id}>
-          {(provided) => (
           <main className={classes.content}>
             <div className={classes.toolbar} />
             <JobList 
-              innerRef={provided.innerRef}
-              {...provided.droppableProps}
               jobs={this.state.jobs} 
-
             />
-            {provided.placeholder}
           </main>
-            )}
-          </Droppable>
-        </Container>
       </div>
         </DragDropContext>
     );

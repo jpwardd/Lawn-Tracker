@@ -68,3 +68,18 @@ componentDidMount() {
         </Fragment>
       )
     })
+
+
+     <Droppable droppableId={this.state.customers.id}>
+          {(provided) => (
+          <main ref={provided.innerRef} className={classes.content}>
+            <div className={classes.toolbar} />
+              <JobList 
+              {...provided.droppableProps}
+              jobs={this.state.jobs} 
+            />
+            {provided.placeholder}
+            
+          </main>
+            )}
+          </Droppable>

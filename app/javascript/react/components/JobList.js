@@ -45,33 +45,34 @@ export default class JobList extends Component {
   
   render() {
     
-    let jobs = this.state.jobs.map((job) => {
+    let jobs = this.state.jobs.map((job, index) => {
       return(
-      <Fragment>
-            <JobTile
-              key={job.id}
-              date={job.job_date}
-              firstName={job.customer.first_name}
-              lastName={job.customer.last_name}
-              phoneNumber={job.customer.phone_number}
-              address={job.customer.address}
-              city={job.customer.city}
-        
-              state={job.customer.state}
-              zipCode={job.customer.zip_code}
-              notes={job.customer.notes}
-            /> 
-  
-        </Fragment>
+        <Droppable droppableId={job.id}>
+        {(provided) => (
+          <div ref={provided.innerRef}>
+              <JobTile
+                {...provided.droppableProps}
+                index={index}
+                key={job.customer.id}
+                date={job.job_date}
+                firstName={job.customer.first_name}
+                lastName={job.customer.last_name}
+                phoneNumber={job.customer.phone_number}
+                address={job.customer.address}
+                city={job.customer.city}
+                state={job.customer.state}
+                zipCode={job.customer.zip_code}
+                notes={job.customer.notes}
+              /> 
+            {provided.placeHolder}
+          </div>
+          )}
+        </Droppable>
       )
     })
     return (
       <Fragment>
-     
-        
       {jobs}
-    
-    
       </Fragment>
 
     )
