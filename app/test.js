@@ -83,3 +83,79 @@ componentDidMount() {
           </main>
             )}
           </Droppable>
+
+
+
+
+
+   addNewJob(formPayLoad) {
+    fetch(`/api/v1/jobs`, {
+      method: "post",
+      body: JSON.stringify(formPayLoad),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ jobs: [...this.state.jobs, body] });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  <form>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <DatePicker
+            label="Job"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            animateYearScrolling={false}
+           
+          />
+        <Button onClick={this.handleSubmit}>add job</Button>
+        </MuiPickersUtilsProvider>
+        </form>
+
+         let newJob = formPayLoad => {
+        this.addNewJob(formPayLoad);
+      };
+
+       handleSubmit(event) {
+    event.preventDefault();
+    let formPayload = {
+      customer_id: this.props.id,
+      
+      job_date: this.state.selectedDate
+    };
+    this.props.newJob(formPayload);
+  }
+
+  export default class CustomerTile extends Component { 
+  constructor(props) {
+  super(props);
+    this.state = {
+    selectedDate: new Date(),
+   
+   
+  }
+  this.handleSubmit = this.handleSubmit.bind(this)
+}
+
+handleDateChange = (date) => {
+    this.setState({ selectedDate: date });
+  }
+
+handleSelect(date){
+  this.setState({ selectedDate: date })
+}

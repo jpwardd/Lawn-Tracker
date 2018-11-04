@@ -7,14 +7,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import AddIcon from "@material-ui/icons/Add";
 import CustomerFormContainer from "../containers/CustomerFormContainer"
 
-export default class FormDialog extends React.Component {
+export default class CustomerFormDialog extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       open: false,
-      customers: this.props.customers
   };
 }
 
@@ -26,40 +26,19 @@ export default class FormDialog extends React.Component {
     this.setState({ open: false });
   };
   
-
-  
-  addNewCustomer(formPayLoad) {
-    fetch(`/api/v1/customers`, {
-      method: "post",
-      body: JSON.stringify(formPayLoad),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      credentials: "same-origin"
-    })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-      
-        this.setState({ customers: [...this.props.customers, body] });
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
-
-
+   
   render() {
     return (
       <div>
-        <button className="success" onClick={this.handleClickOpen}>Add New Customer</button>
+        <Button
+            variant="fab"
+            color="secondary"
+            aria-label="Add"
+            onClick={this.handleClickOpen}
+          >
+            <AddIcon />
+            
+          </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -67,10 +46,12 @@ export default class FormDialog extends React.Component {
         >
           <DialogTitle id="form-dialog-title">Add Your Customer</DialogTitle>
           <DialogContent>
-            
-           <CustomerFormContainer 
-              addNewCustomer={this.addNewCustomer}
-            />
+        
+          <CustomerFormContainer 
+            customers={this.props.customers}
+            addNewCustomer={this.props.addNewCustomer}
+          />
+           
           </DialogContent>
   
         </Dialog>
