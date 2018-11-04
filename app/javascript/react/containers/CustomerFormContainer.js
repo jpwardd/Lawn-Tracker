@@ -3,6 +3,7 @@ import TextInputField from "../components/TextInputField";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
+import Button from "@material-ui/core/Button"
 
 class CustomerFormContainer extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class CustomerFormContainer extends Component {
           variant="standard"
           content={this.state.firstName}
           name="firstName"
-          label="First Name"
+          placeholder="first name"
           value={this.state.firstName}
           onChange={this.handleChange("name")}
           fullWidth
@@ -75,7 +76,7 @@ class CustomerFormContainer extends Component {
           variant="standard"
           content={this.state.lastName}
           name="lastName"
-          label="Last Name"
+          placeholder="Last Name"
           value={this.state.lastName}
           onChange={this.handleChange("name")}
           fullWidth
@@ -83,7 +84,7 @@ class CustomerFormContainer extends Component {
         <TextField
           content={this.state.phoneNumber}
           variant="standard"
-          label="Phone Number"
+          placeholder="Phone Number"
           name="phoneNumber"
           value={this.state.phoneNumber}
           onChange={this.handleChange("name")}
@@ -93,7 +94,7 @@ class CustomerFormContainer extends Component {
         <TextField
           content={this.state.email}
           variant="standard"
-          label="email"
+          placeholder="email"
           name="email"
           value={this.state.email}
           onChange={this.handleChange("name")}
@@ -103,7 +104,7 @@ class CustomerFormContainer extends Component {
         <TextField
           content={this.state.address}
           variant="standard"
-          label="address"
+          placeholder="address"
           name="address"
           value={this.state.address}
           onChange={this.handleChange("name")}
@@ -112,7 +113,7 @@ class CustomerFormContainer extends Component {
         <TextField
           content={this.state.city}
           variant="standard"
-          label="city"
+          placeholder="city"
           name="city"
           value={this.state.city}
           onChange={this.handleChange("name")}
@@ -121,7 +122,7 @@ class CustomerFormContainer extends Component {
         <TextField
           content={this.state.state}
           variant="standard"
-          label="state"
+          placeholder="state"
           name="state"
           value={this.state.state}
           onChange={this.handleChange("name")}
@@ -130,16 +131,16 @@ class CustomerFormContainer extends Component {
         <TextField
           content={this.state.zipCode}
           variant="standard"
-          label="zip code"
+          placeholder="zip code"
           name="zipCode"
           value={this.state.zipCode}
           onChange={this.handleChange("name")}
           fullWidth
         />
 
-        <button className="success" type="submit" value="Submit">
+        <Button variant="contained" color="secondary" type="submit" value="Submit">
           Add Customer
-        </button>
+        </Button>
       </form>
     );
   }
