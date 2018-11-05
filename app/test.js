@@ -85,9 +85,6 @@ componentDidMount() {
           </Droppable>
 
 
-
-
-
    addNewJob(formPayLoad) {
     fetch(`/api/v1/jobs`, {
       method: "post",

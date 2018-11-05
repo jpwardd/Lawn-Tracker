@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button"
+import Link from "react-router"
 
 import MenuDrawer from "../components/MenuDrawer"
 
@@ -53,7 +54,7 @@ class MenuAppBar extends React.Component {
         <AppBar color="default" position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              JOB LIST
+              JOB LIST  
             </Typography>
           
             {/* this is where the login log out button for devise should go */}

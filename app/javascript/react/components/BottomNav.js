@@ -15,6 +15,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router"
+import JobFormDialog from "../components/JobFormDialog"
 
 const styles = theme => ({
   appBar: {
@@ -46,19 +47,24 @@ function BottomNav(props) {
         <Toolbar className={classes.toolbar}>
           
           <Link to="/customers">
-            <Button color="inherit" className={classes.button}>
+            <Button variant="contained" color="secondary" className={classes.button}>
               Contacts
             </Button>
           </Link>
          
-          <Button
+
+         <JobFormDialog 
+           jobs={props.jobs}
+           addNewJob={props.addNewJob}
+         />
+          {/* <Button
             variant="fab"
             color="secondary"
             aria-label="Add"
             className={classes.fabButton}
           >
             <AddIcon />
-          </Button>
+          </Button> */}
           <div>
             <IconButton color="inherit">
               <SearchIcon />

@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 2018_10_30_114105) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "user_id"
     t.string "name", null: false
+    t.bigint "customer_id"
+    t.text "notes"
     t.datetime "job_date", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_jobs_on_customer_id"
