@@ -12,6 +12,7 @@ export default class JobsContainer extends Component {
       jobs: []
     }
     this.onDragEnd = this.onDragEnd.bind(this)
+    this.addNewJob = this.addNewJob.bind(this)
   }
   
    componentDidMount() {
@@ -36,6 +37,33 @@ export default class JobsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  addNewJob(formPayLoad) {
+    fetch(`/api/v1/jobs`, {
+      method: "post",
+      body: JSON.stringify(formPayLoad),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        let newCustomers = this.state.jobs.concat(body)
+        this.setState({ customers: newCustomers });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   onDragEnd(){
 
   }
@@ -53,6 +81,7 @@ export default class JobsContainer extends Component {
       <BottomNav 
       // this is to pass the state to make a new job
         jobs={this.state.jobs}
+        addNewJob={this.addNewJob}
 
       />
       </DragDropContext>
