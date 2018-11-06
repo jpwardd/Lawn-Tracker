@@ -45,8 +45,6 @@ class JobFormContainer extends Component {
     };
     this.props.addNewJob(formPayload);
     this.handleClearForm();
-    console.log(formPayload);
-    console.log(this.state.selectedId)
   }
 
   handleClearForm() {

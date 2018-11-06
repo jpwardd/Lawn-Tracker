@@ -96,6 +96,7 @@ class CustomerFormContainer extends Component {
         <TextField
           name="email"
           value={this.state.email}
+          placeholder="email"
           onChange={this.handleChange}
           margin="normal"
           fullWidth
