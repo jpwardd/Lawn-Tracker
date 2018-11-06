@@ -51,9 +51,6 @@ function BottomNav(props) {
               Contacts
             </Button>
           </Link>
-         
-        
-
          <JobFormDialog 
            jobs={props.jobs}
            addNewJob={props.addNewJob}
