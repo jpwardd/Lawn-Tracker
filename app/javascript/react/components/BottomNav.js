@@ -52,12 +52,6 @@ function BottomNav(props) {
             </Button>
           </Link>
          
-         <Link to="/weather">
-          <Button variant="outlined" color="primary">
-            weather
-          </Button>
-         </Link>
-
          <JobFormDialog 
            jobs={props.jobs}
            addNewJob={props.addNewJob}
