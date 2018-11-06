@@ -40,31 +40,33 @@ export default class CustomerTile extends Component {
       </div>
     )
   } else {
-    return <div>
-        <Paper onClick={this.props.showFullCustomer}>
-          <ListItem>
-            {this.props.firstName} {this.props.lastName}
-          </ListItem>
+      return (
+        <div>
+          <Paper onClick={this.props.showFullCustomer}>
+            <ListItem>
+              {this.props.firstName} {this.props.lastName}
+            </ListItem>
 
-          <ListItem>{this.props.phoneNumber}</ListItem>
+            <ListItem>{this.props.phoneNumber}</ListItem>
 
-          <ListItem>{this.props.email}</ListItem>
+            <ListItem>{this.props.email}</ListItem>
 
-          <ListItem>{this.props.address}</ListItem>
+            <ListItem>{this.props.address}</ListItem>
 
-          <ListItem>{this.props.city}</ListItem>
+            <ListItem>{this.props.city}</ListItem>
+  
+            <ListItem>{this.props.state}</ListItem>
 
-          <ListItem>{this.props.state}</ListItem>
+            <ListItem>{this.props.zipCode}</ListItem>
 
-          <ListItem>{this.props.zip}</ListItem>
-
-          <Button variant="contained" color="secondary">
-            Delete
-            <DeleteIcon />
-          </Button>
-        </Paper>
-      </div>;
+            <Button variant="contained" color="secondary">
+              Delete
+              <DeleteIcon />
+            </Button>
+          </Paper>
+        </div>
+      )
+    }
   }
-  }
-} 
+}
 

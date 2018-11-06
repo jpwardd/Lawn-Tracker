@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import JobList from "../components/JobList"
 
-import { DragDropContext } from 'react-beautiful-dnd';
 import BottomNav from '../components/BottomNav';
 
 
@@ -72,21 +71,22 @@ export default class JobsContainer extends Component {
 
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-      <div>
-    
-  
-        <JobList 
+        <div>
+        <JobList  
           jobs={this.state.jobs}
         />
-      </div>
-      <BottomNav 
-      // this is to pass the state to make a new job
-        jobs={this.state.jobs}
-        addNewJob={this.addNewJob}
 
-      />
-      </DragDropContext>
+        <BottomNav 
+        // this is to pass the state to make a new job
+          jobs={this.state.jobs}
+          addNewJob={this.addNewJob}
+
+        />
+     
+      </div>
+   
+  
+
     )
   }
 }
