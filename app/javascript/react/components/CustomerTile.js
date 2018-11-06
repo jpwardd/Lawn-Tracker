@@ -59,7 +59,7 @@ export default class CustomerTile extends Component {
 
             <ListItem>{this.props.zipCode}</ListItem>
 
-            <Button variant="contained" color="secondary">
+            <Button onClick={this.props.deleteCustomer} variant="contained" color="secondary">
               Delete
               <DeleteIcon />
             </Button>

@@ -77,14 +77,14 @@ export default class CustomersContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newCustomers = this.state.customers.concat(formPayLoad)
+        let newCustomers = this.state.customers.concat(body.customer)
         this.setState({ customers: newCustomers });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   handleDelete(id){
-		fetch(`/api/v1/customers`,
+		fetch(`/api/v1/customers/${id}`,
 		{
 			method: 'DELETE',
 			headers: {
@@ -94,8 +94,7 @@ export default class CustomersContainer extends Component {
 		})
 		.then(response => {
 			if (response.ok) {
-				alert("Review was deleted!")
-				this.deleteReview(id)
+        this.deleteCustomerHandler(id)
 			}
 			else {
 				let errorMessage = `${response.status} (${response.statusText})`,
@@ -131,11 +130,11 @@ export default class CustomersContainer extends Component {
       };
 
       let deleteCustomer = () => {
-        this.deleteCustomerHandler(customer.id)
+        this.handleDelete(customer.id)
       }
    
       return (
-        <div>
+        <div key={customer.id}>
        
           <List>
             <CustomerTile

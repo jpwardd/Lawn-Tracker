@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import JobList from "../components/JobList"
+import JobFormDialog from "../components/JobFormDialog"
+
 
 import BottomNav from '../components/BottomNav';
 
@@ -58,9 +60,7 @@ export default class JobsContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        console.log(body)
-        console.log(this.state)
-        this.setState({ jobs: [...this.state.jobs, formPayLoad] });
+        this.setState({ jobs: [...this.state.jobs, body] });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

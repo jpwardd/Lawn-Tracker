@@ -2,7 +2,7 @@ class Api::V1::CustomersController < ApplicationController
    protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    render json: Customer.all
+    render json: Customer.all.order(:first_name)
   end
 
   def show
@@ -20,7 +20,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def update
-    review = Review.find(params[:id])
+    review = Customer.find(params[:id])
 
     if review.update(review_params)
 		  render json: review

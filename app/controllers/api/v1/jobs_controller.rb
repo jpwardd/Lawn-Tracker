@@ -11,7 +11,7 @@ class Api::V1::JobsController < ApplicationController
     job = Job.new(job_params)
 
     if job.save
-      render json: { job: job }
+      render json: job
     else
       render json: { error: job.errors.full_messages }, status: unprocessable_entity
     end

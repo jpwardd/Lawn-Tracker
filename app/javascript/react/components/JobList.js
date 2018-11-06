@@ -12,14 +12,12 @@ const Container = styled.div`
 
 export default class JobList extends Component {
   render() {
-    
     let jobCards = this.props.jobs.map((job) => {
       return(
-        <div>
           <JobTile
             jobName={job.name}
             notes={job.notes}
-            key={job.customer.id}
+            key={job.id}
             date={job.job_date}
             firstName={job.customer.first_name}
             lastName={job.customer.last_name}
@@ -30,7 +28,6 @@ export default class JobList extends Component {
             zipCode={job.customer.zip_code}
             notes={job.customer.notes}
           /> 
-        </div>
       )
     })
     return (
