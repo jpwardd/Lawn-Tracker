@@ -51,7 +51,7 @@ class MenuAppBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return <div className={classes.root}>
-        <AppBar color="default" position="static">
+        <AppBar color="default" position="sticky">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               JOB LIST  

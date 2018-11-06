@@ -43,7 +43,7 @@ function BottomNav(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="fixed" color="default" className={classes.appBar}>
+      <AppBar position="sticky" color="default" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           
           <Link to="/customers">
@@ -52,24 +52,16 @@ function BottomNav(props) {
             </Button>
           </Link>
          
+         <Link to="/weather">
+          <Button variant="outlined" color="primary">
+            weather
+          </Button>
+         </Link>
 
          <JobFormDialog 
            jobs={props.jobs}
            addNewJob={props.addNewJob}
          />
-          {/* <Button
-            variant="fab"
-            color="secondary"
-            aria-label="Add"
-            className={classes.fabButton}
-          >
-            <AddIcon />
-          </Button> */}
-          <div>
-            <IconButton color="inherit">
-              <SearchIcon />
-            </IconButton>
-          </div>
         </Toolbar>
       </AppBar>
     </React.Fragment>

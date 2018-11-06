@@ -13,6 +13,7 @@ export default class JobsContainer extends Component {
     }
     this.onDragEnd = this.onDragEnd.bind(this)
     this.addNewJob = this.addNewJob.bind(this)
+  
   }
   
    componentDidMount() {
@@ -58,8 +59,9 @@ export default class JobsContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newCustomers = this.state.jobs.concat(body)
-        this.setState({ customers: newCustomers });
+        console.log(body)
+        console.log(this.state)
+        this.setState({ jobs: [...this.state.jobs, formPayLoad] });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

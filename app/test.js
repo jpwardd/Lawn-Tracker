@@ -156,3 +156,37 @@ handleDateChange = (date) => {
 handleSelect(date){
   this.setState({ selectedDate: date })
 }
+
+ 
+    let jobs = this.props.jobs.map((job, index) => {
+    
+      return(
+        <Droppable droppableId={job.id}>
+        {(provided) => (
+          <div ref={provided.innerRef}>
+              <JobTile
+                {...provided.droppableProps}
+                index={index}
+                key={job.customer.id}
+                date={job.job_date}
+                firstName={job.customer.first_name}
+                lastName={job.customer.last_name}
+                phoneNumber={job.customer.phone_number}
+                address={job.customer.address}
+                city={job.customer.city}
+                state={job.customer.state}
+                zipCode={job.customer.zip_code}
+                notes={job.customer.notes}
+              /> 
+            {provided.placeHolder}
+          </div>
+          )}
+        </Droppable>
+      )
+    })
+    return (
+      <Fragment>
+      {jobs}
+      </Fragment>
+
+    )

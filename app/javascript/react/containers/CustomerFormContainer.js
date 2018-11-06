@@ -16,7 +16,8 @@ class CustomerFormContainer extends Component {
       address: "",
       city: "",
       state: "",
-      zipCode: ""
+      zipCode: "",
+      notes: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
@@ -34,7 +35,8 @@ class CustomerFormContainer extends Component {
       address: this.state.address,
       city: this.state.city,
       state: this.state.state,
-      zip_code: this.state.zipCode
+      zip_code: this.state.zipCode,
+      notes: this.state.notes
     };
     this.props.addNewCustomer(formPayload);
     this.handleClearForm();
@@ -50,54 +52,51 @@ class CustomerFormContainer extends Component {
       address: "",
       city: "",
       state: "",
-      zipCode: ""
+      zipCode: "",
+      notes: ""
     });
   }
 
-  handleChange = name => event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+  handleChange(event) {
+    let value = event.target.value;
+    let name = event.target.name;
+    this.setState({ [name]: value });
+  }
 
   render() {
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <TextField
           variant="standard"
-          content={this.state.firstName}
           name="firstName"
           placeholder="first name"
           value={this.state.firstName}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           fullWidth
         />
+
+        {/* play around with the onChange handler to switch the name */}
         <TextField
           variant="standard"
-          content={this.state.lastName}
           name="lastName"
           placeholder="Last Name"
           value={this.state.lastName}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           fullWidth
         />
         <TextField
-          content={this.state.phoneNumber}
           variant="standard"
           placeholder="Phone Number"
           name="phoneNumber"
           value={this.state.phoneNumber}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           margin="normal"
           fullWidth
         />
         <TextField
-          content={this.state.email}
-          variant="standard"
-          placeholder="email"
           name="email"
           value={this.state.email}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           margin="normal"
           fullWidth
         />
@@ -107,38 +106,38 @@ class CustomerFormContainer extends Component {
           placeholder="address"
           name="address"
           value={this.state.address}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           fullWidth
         />
         <TextField
-          content={this.state.city}
-          variant="standard"
           placeholder="city"
           name="city"
           value={this.state.city}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           fullWidth
         />
         <TextField
-          content={this.state.state}
-          variant="standard"
           placeholder="state"
           name="state"
           value={this.state.state}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           fullWidth
         />
         <TextField
-          content={this.state.zipCode}
           variant="standard"
           placeholder="zip code"
           name="zipCode"
           value={this.state.zipCode}
-          onChange={this.handleChange("name")}
+          onChange={this.handleChange}
           fullWidth
         />
 
-        <Button variant="contained" color="secondary" type="submit" value="Submit">
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          value="Submit"
+        >
           Add Customer
         </Button>
       </form>

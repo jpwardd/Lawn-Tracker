@@ -1,22 +1,20 @@
 import React, { Component, Fragment } from 'react'
 import JobTile from '../components/JobTile'
 import { Droppable } from "react-beautiful-dnd"
+import styled from "styled-components"
 
+
+const Container = styled.div`
+  border: 3px solid lightgrey;
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+`;
 
 export default class JobList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  
-  
   render() {
     
     let jobs = this.props.jobs.map((job, index) => {
-    
       return(
         <Droppable droppableId={job.id}>
         {(provided) => (
@@ -24,6 +22,8 @@ export default class JobList extends Component {
               <JobTile
                 {...provided.droppableProps}
                 index={index}
+                jobName={job.name}
+                notes={job.notes}
                 key={job.customer.id}
                 date={job.job_date}
                 firstName={job.customer.first_name}
