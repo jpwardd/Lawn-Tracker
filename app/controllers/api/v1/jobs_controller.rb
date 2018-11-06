@@ -7,6 +7,7 @@ class Api::V1::JobsController < ApplicationController
   end
 
   def create
+
     job = Job.new(job_params)
 
     if job.save
@@ -19,6 +20,6 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    params.permit(:id, :customer_id, :user_id, :job_date) 
+    params.permit(:id, :name, :customer_id, :notes, :job_date, :user_id) 
   end
 end

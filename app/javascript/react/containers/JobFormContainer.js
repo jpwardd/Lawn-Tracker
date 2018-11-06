@@ -17,19 +17,21 @@ import Input from "@material-ui/core/Input"
 import MenuItem from "@material-ui/core/MenuItem";
 
 
-class CustomerFormContainer extends Component {
+class JobFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
+      customerId: "",
       notes: "",
       selectedDate: new Date(),
-      customers: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this)
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -37,18 +39,21 @@ class CustomerFormContainer extends Component {
 
     let formPayload = {
       name: this.state.name,
+      customer_id: +this.state.customerId,
       notes: this.state.notes,
-      selectedDate: this.state.selectedDate
+      job_date: this.state.selectedDate
     };
-    this.props.addNewCustomer(formPayload);
+    this.props.addNewJob(formPayload);
     this.handleClearForm();
     console.log(formPayload);
+    console.log(this.state.selectedId)
   }
 
   handleClearForm() {
     this.setState({
       name: "",
       notes: "",
+      customerId: "",
       selectedDate: new Date()
     });
   }
@@ -59,47 +64,29 @@ class CustomerFormContainer extends Component {
     });
   };
 
-  componentDidMount() {
-    fetch("/api/v1/customers.json")
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => {
-        // console.log("response.status:", response.status);
-        // console.log("response.statusText:", response.statusText);
-        return response.json();
-      })
-      .then(data => {
-        this.setState({ customers: data });
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
-
   handleDateChange = date => {
     this.setState({ selectedDate: date });
   };
 
-  handleInputChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
+  handleInputChange(event) {
+    let value = event.target.value
+    let name = event.target.name
+    this.setState({ [name]: value})
+  }
 
   handleSelectChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ customerId: event.target.value });
   };
 
+  
   render() {
     const { selectedDate } = this.state;
-    let customerSelect = this.state.customers.map(customer => {
+    let customerSelect = this.props.customers.map(customer => {
       return (
-       <MenuItem key={customer.id} value={customer.first_name}>{customer.first_name} {customer.last_name}</MenuItem>
+       <option key={customer.id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
       );
     });
+  
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <form className="container" onSubmit={this.handleSubmit}>
@@ -109,7 +96,7 @@ class CustomerFormContainer extends Component {
             name="name"
             placeholder="Job name"
             value={this.state.name}
-            onChange={this.handleInputChange("name")}
+            onChange={this.handleInputChange}
             fullWidth
           />
           <TextField
@@ -118,28 +105,22 @@ class CustomerFormContainer extends Component {
             name="notes"
             placeholder="notes"
             value={this.state.notes}
-            onChange={this.handleInputChange("name")}
+            onChange={this.handleInputChange}
             fullWidth
           />
+    
+         <select onChange={this.handleSelectChange} >
 
-          <Select
-            value={this.state.customers}
-            onChange={this.handleSelectChange}
-            input={<Input name="customers" />}
-            fullWidth={true}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-              {customerSelect}
-          </Select>
+          <option selected="true" disabled="disabled">Choose A Customer</option>
+          {customerSelect}
+        </select>
          
 
           <InlineDatePicker
-            onlyCalendar
             label="add date"
             value={selectedDate}
             onChange={this.handleDateChange}
+            fullWidth={true}
           />
         </form>
         <Button
@@ -154,4 +135,4 @@ class CustomerFormContainer extends Component {
   }
 }
 
-export default CustomerFormContainer;
+export default JobFormContainer;

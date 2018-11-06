@@ -50,6 +50,7 @@ export default class CustomerFormDialog extends React.Component {
           <CustomerFormContainer 
             customers={this.props.customers}
             addNewCustomer={this.props.addNewCustomer}
+            addCustomer={this.props.addCustomer}
           />
            
           </DialogContent>

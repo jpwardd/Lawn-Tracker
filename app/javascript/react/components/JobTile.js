@@ -29,10 +29,14 @@ class JobTile extends React.Component{
 
   render() {
     const { classes } = this.props;
+    
     return(
       <Card className={classes.card}>
         <CardActionArea>
           <CardContent>
+            <Typography variant="h4">
+              {this.props.jobName}
+            </Typography>
             <Typography gutterBottom variant="h5" component="h2">
               {this.props.firstName} {this.props.lastName}
             </Typography>
@@ -44,6 +48,9 @@ class JobTile extends React.Component{
             </Typography>
             <Typography component="p">
               {this.props.date}
+            </Typography>
+            <Typography>
+              job notes:{this.props.notes}
             </Typography>
 
           </CardContent>

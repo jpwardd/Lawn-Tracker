@@ -77,7 +77,7 @@ export default class CustomersContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let newCustomers = this.state.customers.concat(body)
+        let newCustomers = this.state.customers.concat(formPayLoad)
         this.setState({ customers: newCustomers });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -133,8 +133,7 @@ export default class CustomersContainer extends Component {
       let deleteCustomer = () => {
         this.deleteCustomerHandler(customer.id)
       }
-      console.log(this.state.customers)
-      
+   
       return (
         <div>
           <List>

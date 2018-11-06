@@ -7,6 +7,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def create
+  
     customer = Customer.new(customer_params)
 
     if customer.save
