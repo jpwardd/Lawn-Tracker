@@ -136,6 +136,7 @@ export default class CustomersContainer extends Component {
    
       return (
         <div>
+       
           <List>
             <CustomerTile
               key={customer.id}
@@ -154,13 +155,14 @@ export default class CustomersContainer extends Component {
               
             />
           </List>
+    
         </div>
       );
     });
     return (
       <div>
         <BackButton />
-        <Typography align="center" component="h2" variant="h2" gutterBottom>
+        <Typography align="center" variant="h2" gutterBottom>
           Customers
         </Typography>
       
@@ -172,6 +174,8 @@ export default class CustomersContainer extends Component {
         />
       </FormDialog>
         {customers}
+
+     
       </Container>
       </div>
     )

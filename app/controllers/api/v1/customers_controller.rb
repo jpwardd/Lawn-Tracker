@@ -2,20 +2,34 @@ class Api::V1::CustomersController < ApplicationController
    protect_from_forgery unless: -> { request.format.json? }
 
   def index
-   
     render json: Customer.all
   end
 
-  def create
-  
-    customer = Customer.new(customer_params)
+  def show
+		customers = Customer.find(params[:id])
+		render json: customers
+	end
 
+  def create
+    customer = Customer.new(customer_params)
     if customer.save
       render json: { customer: customer }
     else
       render json: { error: customer.errors.full_messages }, status: unprocessable_entity
     end
   end
+
+  def update
+    review = Review.find(params[:id])
+
+    if review.update(review_params)
+		  render json: review
+		end
+  end
+
+def destroy
+  Customer.destroy(params[:id])
+end
 
   private
 
