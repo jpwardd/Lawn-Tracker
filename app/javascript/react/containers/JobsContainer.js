@@ -11,7 +11,7 @@ export default class JobsContainer extends Component {
     super(props);
     this.state = {
       jobs: [],
-      selectedJob: null
+      
     }
     this.addNewJob = this.addNewJob.bind(this)
     this.deleteJobHandler = this.deleteJobHandler.bind(this)
@@ -101,10 +101,10 @@ export default class JobsContainer extends Component {
 
   
 
-  editJobHandler(formPayLoad) {
-      fetch(`/api/v1/jobs/${formPayLoad.job_id}`, {
+  editJobHandler(formPayload, index) {
+      fetch(`/api/v1/jobs/${formPayload.job_id}`, {
         method: "PATCH",
-        body: JSON.stringify(formPayLoad),
+        body: JSON.stringify(formPayload),
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
@@ -122,12 +122,24 @@ export default class JobsContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          this.setState({ jobs: [...this.state.jobs, body] });
+         let updatedJobList = this.state.jobs.splice(index, 1)
+         this.setState({ jobs: updatedJobList })
         })
         .catch(error =>
           console.error(`Error in fetch: ${error.message}`)
         );
     }
+    
+    idMatch(job){
+      return this == job.id
+    }
+
+    replaceJob(job){
+      let jobId = job.id
+      let changingJob = this.state.jobs.find(this.idMatch, jobId)
+      
+    }
+    
 
   render() {
  
