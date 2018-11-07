@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styled from "styled-components"
+import JobEditDialog from "../components/JobEditDialog"
 
 
 const styles = {
@@ -36,7 +37,6 @@ class JobTile extends React.Component{
 
   render() {
     const { classes } = this.props;
-    
     return(
       <Card className={classes.card}>
         <CardActionArea>
@@ -63,7 +63,14 @@ class JobTile extends React.Component{
           </CardContent>
         </CardActionArea>
         <CardActions>
-        
+          <Button color="secondary" variant="contained" onClick={this.props.deleteJob}>
+            Delete
+          </Button>
+         <JobEditDialog 
+           editJobHandler={this.props.editJobHandler}
+           jobId={this.props.jobId}
+           
+         />
         </CardActions>
       </Card>
     )

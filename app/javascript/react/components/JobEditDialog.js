@@ -7,10 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
-import JobFormContainer from "../containers/JobFormContainer";
-
-
-
+import JobEditFormContainer from "../containers/JobEditFormContainer";
 
 export default class JobFormDialog extends React.Component {
   constructor(props) {
@@ -20,7 +17,6 @@ export default class JobFormDialog extends React.Component {
       customers: []
     };
   }
-
 
   componentDidMount() {
     fetch("/api/v1/customers.json")
@@ -44,7 +40,6 @@ export default class JobFormDialog extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -56,27 +51,30 @@ export default class JobFormDialog extends React.Component {
   render() {
     const { selectedDate } = this.state;
     return (
-      
       <div>
-        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-         Add A Job
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.handleClickOpen}
+          id={this.props.jobId}
+        >
+          edit
         </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Job Details</DialogTitle>
+          <DialogTitle id="form-dialog-title">Edit Job</DialogTitle>
           <DialogContent>
-            <JobFormContainer 
-              addNewJob={this.props.addNewJob}
+            <JobEditFormContainer
+              jobId = {this.props.jobId}
               customers={this.state.customers}
+              editJobHandler={this.props.editJobHandler}
             />
-            
           </DialogContent>
         </Dialog>
       </div>
-   
     );
   }
 }

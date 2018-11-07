@@ -10,11 +10,13 @@ export default class JobsContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      jobs: []
+      jobs: [],
+      selectedJob: null
     }
-    this.onDragEnd = this.onDragEnd.bind(this)
     this.addNewJob = this.addNewJob.bind(this)
-  
+    this.deleteJobHandler = this.deleteJobHandler.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.editJobHandler = this.editJobHandler.bind(this)
   }
   
    componentDidMount() {
@@ -65,15 +67,77 @@ export default class JobsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  onDragEnd(){
 
+  handleDelete(id){
+		fetch(`/api/v1/jobs/${id}`,
+		{
+			method: 'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json' } ,
+			credentials: 'same-origin'
+		})
+		.then(response => {
+			if (response.ok) {
+        this.deleteJobHandler(id)
+			}
+			else {
+				let errorMessage = `${response.status} (${response.statusText})`,
+					error = new Error(errorMessage)
+				throw error
+			}
+		})
+		.catch(error => {
+			console.error(`ERROR IN FETCH: ${error}`)
+		})
+  }
+  
+  deleteJobHandler(id){
+    let updatedJobList = this.state.jobs.filter((job) => job.id !== id)
+    this.setState({
+      jobs: updatedJobList
+    })
   }
 
+  
+
+  editJobHandler(formPayLoad) {
+      fetch(`/api/v1/jobs/${formPayLoad.job_id}`, {
+        method: "PATCH",
+        body: JSON.stringify(formPayLoad),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+      })
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({ jobs: [...this.state.jobs, body] });
+        })
+        .catch(error =>
+          console.error(`Error in fetch: ${error.message}`)
+        );
+    }
+
   render() {
+ 
     return (
         <div>
         <JobList  
+          editJobHandler={this.editJobHandler}
+          handleDelete={this.handleDelete}
           jobs={this.state.jobs}
+          
         />
 
         <BottomNav 

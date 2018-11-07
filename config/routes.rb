@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :customers, only: [:index, :create, :update, :show, :destroy]
       resources :jobs, only: [:index, :create, :update, :destroy]
-      resources :weather, only: :index
 
     end
   end

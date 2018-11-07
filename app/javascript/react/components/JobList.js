@@ -11,10 +11,29 @@ const Container = styled.div`
 `;
 
 export default class JobList extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      jobs: this.props.jobs
+    }
+
+  }
+
+  
+
+
+
   render() {
     let jobCards = this.props.jobs.map((job) => {
+
+      let deleteJob = () => {
+        this.props.handleDelete(job.id)
+      }
+
       return(
           <JobTile
+            editJobHandler={this.props.editJobHandler}
+            jobId={job.id}
             jobName={job.name}
             notes={job.notes}
             key={job.id}
@@ -27,6 +46,8 @@ export default class JobList extends Component {
             state={job.customer.state}
             zipCode={job.customer.zip_code}
             notes={job.customer.notes}
+            deleteJob={deleteJob}
+            
           /> 
       )
     })
