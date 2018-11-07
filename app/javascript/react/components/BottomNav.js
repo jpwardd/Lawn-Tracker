@@ -47,8 +47,8 @@ function BottomNav(props) {
         <Toolbar className={classes.toolbar}>
           
           <Link to="/customers">
-            <Button variant="contained" color="secondary" className={classes.button}>
-              Contacts
+            <Button variant="contained" color="primary" className={classes.button}>
+              Customers
             </Button>
           </Link>
          <JobFormDialog 
