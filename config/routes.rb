@@ -9,6 +9,14 @@ Rails.application.routes.draw do
 
     end
   end
+
+  
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :new, :create, :destroy]
+    end
+  end
+  
   get "/", to: "homes#index"
   get "/customers", to: "homes#index"
 end
