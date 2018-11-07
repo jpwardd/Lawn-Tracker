@@ -31,12 +31,12 @@ export default class JobList extends Component {
       }
 
       return(
+        <div key={job.id}>
           <JobTile
             editJobHandler={this.props.editJobHandler}
             jobId={job.id}
             jobName={job.name}
             notes={job.notes}
-            key={job.id}
             date={job.job_date}
             firstName={job.customer.first_name}
             lastName={job.customer.last_name}
@@ -49,6 +49,7 @@ export default class JobList extends Component {
             deleteJob={deleteJob}
             
           /> 
+        </div>
       )
     })
     return (
