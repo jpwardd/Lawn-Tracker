@@ -102,7 +102,7 @@ export default class JobsContainer extends Component {
   
 
   editJobHandler(formPayload) {
-      fetch(`/api/v1/jobs/${formPayload.job_id}`, {
+      fetch(`/api/v1/jobs/${formPayload.id}`, {
         method: "PATCH",
         body: JSON.stringify(formPayload),
         headers: {
@@ -123,7 +123,7 @@ export default class JobsContainer extends Component {
         .then(response => response.json())
         .then(body => {
           let findJob = job => {
-            return job.id === formPayload.job_id;            
+            return job.id === formPayload.id;            
           }
           let jobIndex = this.state.jobs.findIndex(findJob)
           let newJobs = this.state.jobs
@@ -136,17 +136,6 @@ export default class JobsContainer extends Component {
         );
     }
     
-    idMatch(job){
-      return this == job.id
-    }
-
-    replaceJob(job){
-      let jobId = job.id
-      let changingJob = this.state.jobs.find(this.idMatch, jobId)
-      
-    }
-    
-
   render() {
  
     return (
