@@ -34,7 +34,7 @@ class JobEditFormContainer extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let formPayload = {
-      job_id: +event.target.id, 
+      id: +event.target.id, 
       name: this.state.name,
       customer_id: +this.state.customerId,
       notes: this.state.notes,
