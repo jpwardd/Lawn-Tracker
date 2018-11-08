@@ -3,4 +3,5 @@ class Job < ApplicationRecord
   validates :name, presence: true
 
   belongs_to :customer
+  belongs_to :user
 end

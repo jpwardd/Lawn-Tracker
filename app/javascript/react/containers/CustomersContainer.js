@@ -35,7 +35,10 @@ export default class CustomersContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/customers.json")
+    fetch("/api/v1/customers",
+		{
+			credentials: 'same-origin',
+    })
       .then(response => {
         if (response.ok) {
           return response;
@@ -75,9 +78,10 @@ export default class CustomersContainer extends Component {
           throw error;
         }
       })
+  
       .then(response => response.json())
       .then(body => {
-        let newCustomers = this.state.customers.concat(body.customer)
+        let newCustomers = this.state.customers.concat(body)
         this.setState({ customers: newCustomers });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));

@@ -101,7 +101,7 @@ export default class JobsContainer extends Component {
 
   
 
-  editJobHandler(formPayload, index) {
+  editJobHandler(formPayload) {
       fetch(`/api/v1/jobs/${formPayload.job_id}`, {
         method: "PATCH",
         body: JSON.stringify(formPayload),
@@ -122,8 +122,14 @@ export default class JobsContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-         let updatedJobList = this.state.jobs.splice(index, 1)
-         this.setState({ jobs: updatedJobList })
+          let findJob = job => {
+            return job.id === formPayload.job_id;            
+          }
+          let jobIndex = this.state.jobs.findIndex(findJob)
+          let newJobs = this.state.jobs
+          newJobs.splice(jobIndex, 1, body)
+      
+         this.setState({ jobs: newJobs })
         })
         .catch(error =>
           console.error(`Error in fetch: ${error.message}`)
