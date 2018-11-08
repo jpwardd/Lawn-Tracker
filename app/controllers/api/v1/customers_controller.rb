@@ -24,8 +24,9 @@ class Api::V1::CustomersController < ApplicationController
 
   def update
     customer = Customer.find(params[:id])
-
-    if review.update(customer_params)
+    customer.user = current_user
+    
+    if customer.update(customer_params)
 		  render json: customer
 		end
   end
@@ -37,6 +38,6 @@ end
   private
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :phone_number, :email, :address, :city, :state, :zip_code, :notes) 
+    params.require(:customer).permit(:first_name, :last_name, :phone_number, :email, :address, :city, :state, :zip_code, :notes, user: current_user) 
   end
 end
