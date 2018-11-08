@@ -2,7 +2,9 @@ class Api::V1::CustomersController < ApplicationController
    protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    render json: Customer.all.order(:first_name)
+  
+    render json: Customer.where(user: current_user)
+   
   end
 
   def show
@@ -12,18 +14,19 @@ class Api::V1::CustomersController < ApplicationController
 
   def create
     customer = Customer.new(customer_params)
+    customer.user = current_user
     if customer.save
-      render json: { customer: customer }
+      render json: customer 
     else
-      render json: { error: customer.errors.full_messages }, status: unprocessable_entity
+      render json: { error: customer.errors.full_messages.join(', ') }, status: :unprocessable_entity
     end
   end
 
   def update
-    review = Customer.find(params[:id])
+    customer = Customer.find(params[:id])
 
-    if review.update(review_params)
-		  render json: review
+    if review.update(customer_params)
+		  render json: customer
 		end
   end
 
