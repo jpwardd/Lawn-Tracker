@@ -32,6 +32,7 @@ export default class CustomersContainer extends Component {
     this.addNewCustomer = this.addNewCustomer.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.deleteCustomerHandler = this.deleteCustomerHandler.bind(this)
+    this.editCustomerHandler = this.editCustomerHandler.bind(this)
   }
 
   componentDidMount() {
@@ -118,6 +119,42 @@ export default class CustomersContainer extends Component {
     })
   }
 
+
+  editCustomerHandler(formPayload) {
+      fetch(`/api/v1/customers/${formPayload.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(formPayload),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+      })
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          let findCustomer = customer => {
+            return customer.id === formPayload.id;            
+          }
+          let customerIndex = this.state.customers.findIndex(findCustomer)
+          let newCustomers = this.state.customers
+          newCustomers.splice(customerIndex, 1, body)
+      
+         this.setState({ customers: newCustomers })
+        })
+        .catch(error =>
+          console.error(`Error in fetch: ${error.message}`)
+        );
+    }
+
   showFullCustomerHandler(id) {
     if (id === this.state.customerId) {
       this.setState(state => ({ customerId: null }));
@@ -155,6 +192,7 @@ export default class CustomersContainer extends Component {
               showFullCustomer={showFullCustomer}
               customerId={this.state.customerId}
               deleteCustomer={deleteCustomer}
+              editCustomerHandler={this.editCustomerHandler}
               
             />
           </List>

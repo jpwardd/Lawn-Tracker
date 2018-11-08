@@ -11,6 +11,9 @@ import DatePicker from "material-ui-pickers/DatePicker";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import Button from "@material-ui/core/Button"
+import MoreIcon from "@material-ui/icons/MoreVert";
+import IconButton from "@material-ui/core/IconButton";
+
 
 import TextField from "@material-ui/core/TextField"
 
@@ -19,51 +22,187 @@ export default class CustomerTile extends Component {
   constructor(props) {
   super(props);
     this.state = {
+      id: this.props.id,
+      firstName: this.props.firstName,
+      lastName: this.props.lastName,
+      phoneNumber: this.props.phoneNumber,
+      email: this.props.email,
+      address: this.props.address,
+      city: this.props.city,
+      state: this.props.state,
+      zipCode: this.props.zipCode,
+      notes: this.props.notes,
+      edit: false
+     
   
   }
-  
+   this.handleChange = this.handleChange.bind(this)
+   this.handleSubmit = this.handleSubmit.bind(this)
+   this.editHandler = this.editHandler.bind(this)
 }
+
+handleSubmit(event) {
+    event.preventDefault();
+    let formPayload = {
+      id: +this.state.id,
+      first_name: this.state.firstName,
+      last_name: this.state.lastName,
+      phone_number: this.state.phoneNumber,
+      email: this.state.email,
+      address: this.state.address,
+      city: this.state.city,
+      state: this.state.state,
+      zip_code: this.state.zipCode,
+      notes: this.state.notes
+    };
+    this.props.editCustomerHandler(formPayload);
+    this.setState({
+      edit: false
+    })
+    console.log(formPayload);
+  }
+
+
+  editHandler(event){
+    event.preventDefault()
+    this.setState({ edit: true })
+  }
+
+   handleChange(event) {
+    let value = event.target.value;
+    let name = event.target.name;
+    this.setState({ [name]: value });
+  }
 
   render() {
     const { selectedDate } = this.state;
   
+    let className = "";
+    if (this.state.edit) {
+      className = " customer-edit-input-active";
+    }
+    
+    let button;
+    if (this.state.edit !== true) {
+      button = <Button className="warning" variant="contained" onClick={this.editHandler}>edit</Button>
+    } else {
+      button = <Button className="success" type="submit" variant="contained" value="submit" onClick={this.handleSubmit} >save</Button>;
+    }
+
     if (this.props.customerId != this.props.id) {
-  
     return (
       <div>
-        <Paper onClick={this.props.showFullCustomer}>
+        <Paper>
           <ListItem>
             {this.props.firstName} {this.props.lastName}
           </ListItem>
-          {this.props.children}
+          <IconButton onClick={this.props.showFullCustomer} color="inherit">
+            <MoreIcon />
+          </IconButton>
         </Paper>
       </div>
     )
   } else {
       return (
         <div>
-          <Paper onClick={this.props.showFullCustomer}>
+          <Paper className="name">
+          <Button onClick={this.props.showFullCustomer}>
+            done
+          </Button>
             <ListItem>
               {this.props.firstName} {this.props.lastName}
             </ListItem>
-
-            <ListItem>{this.props.phoneNumber}</ListItem>
-
-            <ListItem>{this.props.email}</ListItem>
-
-            <ListItem>{this.props.address}</ListItem>
-
-            <ListItem>{this.props.city}</ListItem>
-  
-            <ListItem>{this.props.state}</ListItem>
-
-            <ListItem>{this.props.zipCode}</ListItem>
-
-            <Button onClick={this.props.deleteCustomer} variant="contained" color="secondary">
-              Delete
-              <DeleteIcon />
-            </Button>
           </Paper>
+        
+            <form className="customer-edit">
+              <label>First Name</label>
+              <input 
+                className={`customer-edit-input${className}`}
+                label="First Name"
+                name="firstName" 
+                value={this.state.firstName}  
+                onChange={this.handleChange} 
+                disabled={!this.state.edit}
+                
+              />
+              <label>Last Name</label>
+              <input 
+               className={`customer-edit-input${className}`}
+                label="Last Name"
+                name="lastName" 
+                value={this.state.lastName}  
+                onChange={this.handleChange} 
+                disabled={!this.state.edit}
+                
+              />
+
+              <label>Phone Number</label>
+              <input
+                 className={`customer-edit-input${className}`}
+                label="Phone Number"
+                name="phoneNumber" 
+                value={this.state.phoneNumber}  
+                onChange={this.handleChange} 
+                disabled={!this.state.edit}
+                
+              />
+              <label>Email</label>
+              <input 
+               className={`customer-edit-input${className}`}
+                label="Email"
+                name="email" 
+                value={this.state.email}  
+                onChange={this.handleChange} 
+                disabled={!this.state.edit}
+                
+              />
+              <label>Address</label>
+              <input 
+               className={`customer-edit-input${className}`}
+                label="Address"
+                name="address" 
+                value={this.state.address}  
+                onChange={this.handleChange} 
+                disabled={!this.state.edit}
+                 
+              />
+              <label>City</label>
+              <input 
+               className={`customer-edit-input${className}`}
+                label="City"
+                name="city" 
+                value={this.state.city}  
+                onChange={this.handleChange} 
+                disabled={!this.state.edit}
+                
+              />
+              <label>State</label>
+              <input 
+               className={`customer-edit-input${className}`}
+                label="State"
+                name="state" 
+                value={this.state.state}  
+                onChange={this.handleChange}
+                disabled={!this.state.edit} 
+                
+              />
+              <label>Zip Code</label>
+              <input 
+               className={`customer-edit-input${className}`}
+                label="Zip Code"
+                name="zipCode" 
+                value={this.state.zipCode}  
+                onChange={this.handleChange}
+                disabled={!this.state.edit}
+                
+              />
+           
+            {button}
+            <Button className="button alert" onClick={this.props.deleteCustomer} variant="contained" color="secondary">
+              Delete
+            </Button>
+            </form>
+
         </div>
       )
     }
