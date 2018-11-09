@@ -14,7 +14,8 @@ export default class JobList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      jobs: this.props.jobs
+      jobs: this.props.jobs,
+      
     }
 
   }
@@ -24,7 +25,8 @@ export default class JobList extends Component {
 
 
   render() {
-    let jobCards = this.props.jobs.map((job) => {
+    let filteredJobs = this.props.jobs.filter((job) => job.day_of_week === this.props.day)
+    let jobCards = filteredJobs.map((job) => {
 
       let deleteJob = () => {
         this.props.handleDelete(job.id)
@@ -37,7 +39,7 @@ export default class JobList extends Component {
             jobId={job.id}
             jobName={job.name}
             notes={job.notes}
-            date={job.job_date}
+            date={job.presentable_job_date}
             firstName={job.customer.first_name}
             lastName={job.customer.last_name}
             phoneNumber={job.customer.phone_number}
