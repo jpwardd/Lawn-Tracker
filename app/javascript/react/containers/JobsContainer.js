@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import JobList from "../components/JobList"
-import JobFormDialog from "../components/JobFormDialog"
-
+import JobFormDialog from "../components/JobFormDialog";
+import { Link } from "react-router";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import DayTabs from "../components/DayTabs"
 
 import BottomNav from '../components/BottomNav';
 
@@ -11,12 +14,14 @@ export default class JobsContainer extends Component {
     super(props);
     this.state = {
       jobs: [],
+      day: "Monday"
       
     }
     this.addNewJob = this.addNewJob.bind(this)
     this.deleteJobHandler = this.deleteJobHandler.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.editJobHandler = this.editJobHandler.bind(this)
+    this.updateDay = this.updateDay.bind(this)
   }
   
    componentDidMount() {
@@ -135,26 +140,47 @@ export default class JobsContainer extends Component {
           console.error(`Error in fetch: ${error.message}`)
         );
     }
+
+    updateDay(weekday) {
+      this.setState({ day: weekday})
+    }
     
   render() {
  
     return (
-        <div>
+      <div>
+        <main>
+        <DayTabs 
+        // this is to pass the state to make a new job
+          jobs={this.state.jobs}
+          addNewJob={this.addNewJob}
+          updateDay={this.updateDay}
+
+        />
+        <Typography align="center" variant="h3">
+            Your Jobs 
+        </Typography>
+        
         <JobList  
           editJobHandler={this.editJobHandler}
           handleDelete={this.handleDelete}
           jobs={this.state.jobs}
+          day={this.state.day}
           
         />
-
-        <BottomNav 
-        // this is to pass the state to make a new job
-          jobs={this.state.jobs}
-          addNewJob={this.addNewJob}
-
-        />
+        </main>
+        <Link to="/customers">
+            <Button variant="contained" color="primary">
+              Customers
+            </Button>
+          </Link>
+         <JobFormDialog 
+           jobs={this.props.jobs}
+           addNewJob={this.addNewJob}
+         />
      
       </div>
+   
    
   
 
