@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styled from "styled-components"
 import JobEditDialog from "../components/JobEditDialog"
+import GoogleMapReact from "google-map-react";
 
 
 
@@ -37,12 +38,29 @@ class JobTile extends React.Component{
 
 
   render() {
+      let center = {
+        lat: this.props.lat,
+        lng: this.props.lng
+    }
+
+
     const { classes } = this.props;
     return(
-      <Card className={classes.card}>
+      <Card>
         <CardActionArea>
+         <div style={{ height: '20vh', width: '100%' }}>
+              <GoogleMapReact
+              bootstrapURLKeys={{ key:"AIzaSyA5YTh0MG0kmemXVlsl8VDbiHVUQaebWfU"}}
+              center={center}
+              zoom={16}
+              >
+              </GoogleMapReact>
+        </div>
           <CardContent>
-            <Typography variant="h4">
+          <Typography va>
+
+          </Typography>
+            <Typography variant="h5">
               {this.props.jobName}
             </Typography>
             <Typography gutterBottom variant="h5" component="h2">

@@ -3,6 +3,7 @@ import JobTile from '../components/JobTile'
 import styled from "styled-components"
 
 
+
 const Container = styled.div`
   border: 3px solid lightgrey;
   width: 100%;
@@ -27,7 +28,6 @@ export default class JobList extends Component {
       let deleteJob = () => {
         this.props.handleDelete(job.id)
       }
-
       return(
         <div key={job.id}>
           <JobTile
@@ -41,6 +41,8 @@ export default class JobList extends Component {
             phoneNumber={job.customer.phone_number}
             address={job.customer.address}
             deleteJob={deleteJob}
+            lat={+job.customer.lat}
+            lng={+job.customer.lng}
           /> 
         </div>
       )
