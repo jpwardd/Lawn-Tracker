@@ -12,6 +12,7 @@ import styled from "styled-components"
 import JobEditDialog from "../components/JobEditDialog"
 
 
+
 const styles = {
   card: {
     maxWidth: 345,
@@ -50,16 +51,13 @@ class JobTile extends React.Component{
             <Typography component="p">
               {this.props.address}
             </Typography>
-            <Typography component="p">
-              {this.props.city}, {this.props.state} {this.props.zipCode}.
-            </Typography>
+
             <Typography component="p">
               {this.props.date}
             </Typography>
             <Typography>
               job notes:{this.props.notes}
             </Typography>
-
           </CardContent>
         </CardActionArea>
         <CardActions>
@@ -69,7 +67,6 @@ class JobTile extends React.Component{
          <JobEditDialog 
            editJobHandler={this.props.editJobHandler}
            jobId={this.props.jobId}
-           
          />
         </CardActions>
       </Card>

@@ -38,6 +38,6 @@ end
   private
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :phone_number, :email, :address, :city, :state, :zip_code, :notes, user: current_user) 
+    params.require(:customer).permit(:first_name, :last_name, :phone_number, :email, :address, :lng, :lat, :notes, user: current_user) 
   end
 end

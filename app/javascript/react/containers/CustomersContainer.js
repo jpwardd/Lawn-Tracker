@@ -60,10 +60,11 @@ export default class CustomersContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  addNewCustomer(formPayLoad) {
+  addNewCustomer(formPayload) {
+    debugger
     fetch(`/api/v1/customers`, {
       method: "post",
-      body: JSON.stringify(formPayLoad),
+      body: JSON.stringify(formPayload),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -170,6 +171,7 @@ export default class CustomersContainer extends Component {
         this.showFullCustomerHandler(customer.id);
       };
 
+    
       let deleteCustomer = () => {
         this.handleDelete(customer.id)
       }
@@ -186,13 +188,12 @@ export default class CustomersContainer extends Component {
               phoneNumber={customer.phone_number}
               email={customer.email}
               address={customer.address}
-              city={customer.city}
-              state={customer.state}
-              zipCode={customer.zip_code}
               showFullCustomer={showFullCustomer}
               customerId={this.state.customerId}
               deleteCustomer={deleteCustomer}
               editCustomerHandler={this.editCustomerHandler}
+              lat={+customer.lat}
+              lng={+customer.lng}
               
             />
           </List>

@@ -20,12 +20,11 @@ ActiveRecord::Schema.define(version: 2018_10_30_114105) do
     t.string "last_name", null: false
     t.string "phone_number", null: false
     t.string "email"
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
+    t.string "address", null: false
     t.text "notes"
     t.bigint "user_id", null: false
+    t.string "lat", null: false
+    t.string "lng", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_customers_on_user_id"

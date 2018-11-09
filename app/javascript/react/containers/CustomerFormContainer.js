@@ -4,6 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button"
+import AddressSearchInput from "../components/AddressSearchInput";
+import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete";
 
 class CustomerFormContainer extends Component {
   constructor(props) {
@@ -14,14 +16,22 @@ class CustomerFormContainer extends Component {
       phoneNumber: "",
       email: "",
       address: "",
-      city: "",
-      state: "",
-      zipCode: "",
+      geoLocation: {},
       notes: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGeoLocation = this.handleGeoLocation.bind(this);
+    this.handleAddress = this.handleAddress.bind(this)
+  }
+
+  handleAddress(address) {
+    this.setState({ address: address });
+  }
+
+  handleGeoLocation(latLng) {
+    this.setState({ geoLocation: latLng });
   }
 
   handleSubmit(event) {
@@ -33,14 +43,12 @@ class CustomerFormContainer extends Component {
       phone_number: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
-      city: this.state.city,
-      state: this.state.state,
-      zip_code: this.state.zipCode,
-      notes: this.state.notes
+      notes: this.state.notes,
+      lat: this.state.geoLocation.lat,
+      lng: this.state.geoLocation.lng
     };
     this.props.addNewCustomer(formPayload);
     this.handleClearForm();
-    console.log(formPayload);
   }
 
   handleClearForm() {
@@ -50,9 +58,6 @@ class CustomerFormContainer extends Component {
       phoneNumber: "",
       email: "",
       address: "",
-      city: "",
-      state: "",
-      zipCode: "",
       notes: ""
     });
   }
@@ -64,6 +69,7 @@ class CustomerFormContainer extends Component {
   }
 
   render() {
+    console.log(this.state.geoLocation.lat);
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <TextField
@@ -101,37 +107,11 @@ class CustomerFormContainer extends Component {
           margin="normal"
           fullWidth
         />
-        <TextField
-          content={this.state.address}
-          variant="standard"
-          placeholder="address"
-          name="address"
-          value={this.state.address}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          placeholder="city"
-          name="city"
-          value={this.state.city}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          placeholder="state"
-          name="state"
-          value={this.state.state}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          variant="standard"
-          placeholder="zip code"
-          name="zipCode"
-          value={this.state.zipCode}
-          onChange={this.handleChange}
-          fullWidth
-        />
+        <AddressSearchInput 
+          handleGeoLocation={this.handleGeoLocation}
+          handleAddress={this.handleAddress}
+          address = {this.state.address}
+        />  
 
         <Button
           variant="contained"
