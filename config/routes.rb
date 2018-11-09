@@ -16,6 +16,12 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :new, :create, :destroy]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :weather, only: [:index]
+    end
+  end
   
   get "/", to: "homes#index"
   get "/customers", to: "homes#index"

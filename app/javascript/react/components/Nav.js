@@ -94,7 +94,7 @@ class MenuAppBar extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               JOB LIST
             </Typography>
-  
+            <Link to="/weather"><Button>Weather</Button></Link>
             <Button onClick={this.userSignOut}>Logout</Button>
           </Toolbar>
         </AppBar>
