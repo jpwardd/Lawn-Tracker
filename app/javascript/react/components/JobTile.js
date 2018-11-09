@@ -57,20 +57,18 @@ class JobTile extends React.Component{
               </GoogleMapReact>
         </div>
           <CardContent>
-          <Typography va>
-
-          </Typography>
-            <Typography variant="h5">
+        
+            <Typography align="center" variant="h6">
               {this.props.jobName}
             </Typography>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography variant="h6">
               {this.props.firstName} {this.props.lastName}
             </Typography>
-            <Typography component="p">
+            <Typography variant="h6">
               {this.props.address}
             </Typography>
 
-            <Typography component="p">
+            <Typography variant="h6">
               {this.props.date}
             </Typography>
             <Typography>
