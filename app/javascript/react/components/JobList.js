@@ -20,10 +20,6 @@ export default class JobList extends Component {
 
   }
 
-  
-
-
-
   render() {
     let filteredJobs = this.props.jobs.filter((job) => job.day_of_week === this.props.day)
     let jobCards = filteredJobs.map((job) => {
@@ -44,12 +40,7 @@ export default class JobList extends Component {
             lastName={job.customer.last_name}
             phoneNumber={job.customer.phone_number}
             address={job.customer.address}
-            city={job.customer.city}
-            state={job.customer.state}
-            zipCode={job.customer.zip_code}
-            notes={job.customer.notes}
             deleteJob={deleteJob}
-            
           /> 
         </div>
       )

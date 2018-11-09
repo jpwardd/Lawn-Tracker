@@ -13,7 +13,7 @@ import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import Button from "@material-ui/core/Button"
 import MoreIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
-
+import GoogleMapReact from "google-map-react";
 
 import TextField from "@material-ui/core/TextField"
 
@@ -40,6 +40,8 @@ export default class CustomerTile extends Component {
    this.handleSubmit = this.handleSubmit.bind(this)
    this.editHandler = this.editHandler.bind(this)
 }
+
+ 
 
 handleSubmit(event) {
     event.preventDefault();
@@ -87,6 +89,11 @@ handleSubmit(event) {
       button = <Button className="warning" variant="contained" onClick={this.editHandler}>edit</Button>
     } else {
       button = <Button className="success" type="submit" variant="contained" value="submit" onClick={this.handleSubmit} >save</Button>;
+    }
+
+      let center = {
+        lat: this.props.lat,
+        lng: this.props.lng
     }
 
     if (this.props.customerId != this.props.id) {
@@ -166,36 +173,15 @@ handleSubmit(event) {
                 disabled={!this.state.edit}
                  
               />
-              <label>City</label>
-              <input 
-               className={`customer-edit-input${className}`}
-                label="City"
-                name="city" 
-                value={this.state.city}  
-                onChange={this.handleChange} 
-                disabled={!this.state.edit}
-                
-              />
-              <label>State</label>
-              <input 
-               className={`customer-edit-input${className}`}
-                label="State"
-                name="state" 
-                value={this.state.state}  
-                onChange={this.handleChange}
-                disabled={!this.state.edit} 
-                
-              />
-              <label>Zip Code</label>
-              <input 
-               className={`customer-edit-input${className}`}
-                label="Zip Code"
-                name="zipCode" 
-                value={this.state.zipCode}  
-                onChange={this.handleChange}
-                disabled={!this.state.edit}
-                
-              />
+             
+          <div style={{ height: '30vh', width: '100%' }}>
+              <GoogleMapReact
+              bootstrapURLKeys={{ key:"AIzaSyA5YTh0MG0kmemXVlsl8VDbiHVUQaebWfU"}}
+              center={center}
+              zoom={16}
+              >
+              </GoogleMapReact>
+        </div>
            
             {button}
             <Button className="button alert" onClick={this.props.deleteCustomer} variant="contained" color="secondary">

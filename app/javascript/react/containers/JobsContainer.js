@@ -157,7 +157,7 @@ export default class JobsContainer extends Component {
           updateDay={this.updateDay}
 
         />
-        <Typography align="center" variant="h3">
+        <Typography align="center" variant="h3" gutterBottom>
             Your Jobs 
         </Typography>
         
