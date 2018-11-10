@@ -5,9 +5,12 @@ import { Link } from "react-router";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import DayTabs from "../components/DayTabs"
-
+import styled from "styled-components"
 import BottomNav from '../components/BottomNav';
 
+const Container = styled.div`
+  border: 2px solid #d7d9dd;
+`;
 
 export default class JobsContainer extends Component {
   constructor(props){
@@ -157,7 +160,7 @@ export default class JobsContainer extends Component {
           updateDay={this.updateDay}
 
         />
-        <Typography align="center" variant="h3" gutterBottom>
+        <Typography align="center" variant="h3">
             Your Jobs 
         </Typography>
         

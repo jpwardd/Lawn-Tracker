@@ -88,13 +88,13 @@ class MenuAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar color="default" position="static">
+        <AppBar color="primary" position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               JOB LIST
             </Typography>
-            <Link to="/weather"><Button>Weather</Button></Link>
-            <Button onClick={this.userSignOut}>Logout</Button>
+            <Link to="/weather"><Button variant="contained" color="secondary">Weather</Button></Link>
+            <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
           </Toolbar>
         </AppBar>
         {this.props.children}
