@@ -9,7 +9,6 @@ class User < ApplicationRecord
   
   validates :role, null: false
  
-
   def admin?
     role == "admin"
   end

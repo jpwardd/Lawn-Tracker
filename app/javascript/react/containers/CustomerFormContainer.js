@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import TextInputField from "../components/TextInputField";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button"
 import AddressSearchInput from "../components/AddressSearchInput";
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete";
@@ -69,7 +66,6 @@ class CustomerFormContainer extends Component {
   }
 
   render() {
-    console.log(this.state.geoLocation.lat);
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <TextField

@@ -1,21 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper"
-
-import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
-import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider";
-import TimePicker from "material-ui-pickers/TimePicker";
-import DatePicker from "material-ui-pickers/DatePicker";
-import DeleteIcon from "@material-ui/icons/Delete";
-import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import Button from "@material-ui/core/Button"
 import MoreIcon from "@material-ui/icons/MoreVert";
-import IconButton from "@material-ui/core/IconButton";
 import GoogleMapReact from "google-map-react";
+import IconButton from "@material-ui/core/IconButton"
 
-import TextField from "@material-ui/core/TextField"
 
 
 export default class CustomerTile extends Component { 
@@ -61,9 +52,7 @@ handleSubmit(event) {
     this.setState({
       edit: false
     })
-    console.log(formPayload);
   }
-
 
   editHandler(event){
     event.preventDefault()
@@ -181,14 +170,13 @@ handleSubmit(event) {
               zoom={16}
               >
               </GoogleMapReact>
-        </div>
+          </div>
            
             {button}
             <Button className="button alert" onClick={this.props.deleteCustomer} variant="contained" color="secondary">
               Delete
             </Button>
             </form>
-
         </div>
       )
     }
