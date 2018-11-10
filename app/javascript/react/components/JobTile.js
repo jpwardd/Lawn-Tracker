@@ -5,13 +5,10 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import styled from "styled-components"
 import JobEditDialog from "../components/JobEditDialog"
 import GoogleMapReact from "google-map-react";
-
 
 
 const styles = {
@@ -23,13 +20,6 @@ const styles = {
     height: 140,
   },
 };
-
-const Container = styled.div`
-  border: 3px solid lightgrey;
-  width: 100%;
-  height: 100%;
-  margin: 10px;
-`;
 
 class JobTile extends React.Component{
   constructor(props) {

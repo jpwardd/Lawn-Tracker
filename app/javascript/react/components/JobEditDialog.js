@@ -30,8 +30,6 @@ export default class JobFormDialog extends React.Component {
         }
       })
       .then(response => {
-        // console.log("response.status:", response.status);
-        // console.log("response.statusText:", response.statusText);
         return response.json();
       })
       .then(data => {

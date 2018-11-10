@@ -1,20 +1,11 @@
 import React, { Component, Fragment } from "react";
-import TextInputField from "../components/TextInputField";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button";
-
 import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
 import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider";
 import TimePicker from "material-ui-pickers/TimePicker";
 import InlineDatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import Input from "@material-ui/core/Input"
-import MenuItem from "@material-ui/core/MenuItem";
 
 
 class JobFormContainer extends Component {
@@ -110,10 +101,9 @@ class JobFormContainer extends Component {
          <select onChange={this.handleSelectChange} >
 
           <option selected="true" disabled="disabled">Choose A Customer</option>
-          {customerSelect}
-        </select>
+            {customerSelect}
+          </select>
          
-
           <InlineDatePicker
             label="add date"
             value={selectedDate}

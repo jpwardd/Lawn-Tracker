@@ -29,10 +29,10 @@ export default class CustomersContainer extends Component {
     this.state = {
       customers: []
     }
-    this.addNewCustomer = this.addNewCustomer.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
-    this.deleteCustomerHandler = this.deleteCustomerHandler.bind(this)
-    this.editCustomerHandler = this.editCustomerHandler.bind(this)
+    this.addNewCustomer = this.addNewCustomer.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.deleteCustomerHandler = this.deleteCustomerHandler.bind(this);
+    this.editCustomerHandler = this.editCustomerHandler.bind(this);
   }
 
   componentDidMount() {
@@ -50,8 +50,6 @@ export default class CustomersContainer extends Component {
         }
       })
       .then(response => {
-        // console.log("response.status:", response.status);
-        // console.log("response.statusText:", response.statusText);
         return response.json();
       })
       .then(data => {
@@ -61,7 +59,6 @@ export default class CustomersContainer extends Component {
   }
 
   addNewCustomer(formPayload) {
-    debugger
     fetch(`/api/v1/customers`, {
       method: "post",
       body: JSON.stringify(formPayload),
@@ -178,7 +175,6 @@ export default class CustomersContainer extends Component {
    
       return (
         <div key={customer.id}>
-       
           <List>
             <CustomerTile
               key={customer.id}
@@ -194,10 +190,8 @@ export default class CustomersContainer extends Component {
               editCustomerHandler={this.editCustomerHandler}
               lat={+customer.lat}
               lng={+customer.lng}
-              
             />
           </List>
-    
         </div>
       );
     });
@@ -215,9 +209,7 @@ export default class CustomersContainer extends Component {
           addNewCustomer={this.addNewCustomer}
         />
       </FormDialog>
-        {customers}
-
-     
+        {customers} 
       </Container>
       </div>
     )

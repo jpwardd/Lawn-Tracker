@@ -7,8 +7,6 @@ import JobsContainer from "../containers/JobsContainer"
 import CustomersContainer from '../containers/CustomersContainer';
 import Weather from "../components/Weather"
 
-
-
 export const App = (props) => {
   return (
    

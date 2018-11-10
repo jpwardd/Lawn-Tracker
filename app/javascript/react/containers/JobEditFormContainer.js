@@ -1,18 +1,11 @@
 import React, { Component, Fragment } from "react";
 import TextField from "@material-ui/core/TextField";
-import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button";
-
 import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
 import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider";
-import TimePicker from "material-ui-pickers/TimePicker";
 import InlineDatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
-import MenuItem from "@material-ui/core/MenuItem";
 
 class JobEditFormContainer extends Component {
   constructor(props) {
@@ -73,8 +66,6 @@ class JobEditFormContainer extends Component {
     this.setState({ customerId: event.target.value });
   };
 
-
-
   render() {
     const { selectedDate } = this.state;
     let customerSelect = this.props.customers.map(customer => {
@@ -82,11 +73,8 @@ class JobEditFormContainer extends Component {
         <option key={customer.id} value={customer.id}>
           {customer.first_name} {customer.last_name}
         </option>
-      );
+      )
     });
-
-  
-    
 
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -125,9 +113,7 @@ class JobEditFormContainer extends Component {
           />
         </form>
         <button
-         
           id={this.props.jobId}
-          
           onClick={this.handleSubmit}
         >
           add job

@@ -502,3 +502,415 @@ class Api::V1::DogsController < ApplicationController
     params.require(:dog).permit(:name, :breed, :size, :birthday, :rabies, :rabies_docs, :shots, :dog_handling, :voice_commands, :dog_aggression, :fixed, :dog_return, :dog_issues, :tos_accept, :tos_name).merge(tos_date: Time.now, user: current_user)
   end
 end
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import tileData from './tileData';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    flexWrap: 'nowrap',
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: 'translateZ(0)',
+  },
+  title: {
+    color: theme.palette.primary.light,
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+});
+
+/**
+ * The example data is structured as follows:
+ *
+ * import image from 'path/to/image.jpg';
+ * [etc...]
+ *
+ * const tileData = [
+ *   {
+ *     img: image,
+ *     title: 'Image',
+ *     author: 'author',
+ *   },
+ *   {
+ *     [etc...]
+ *   },
+ * ];
+ */
+function SingleLineGridList(props) {
+  const { classes } = props;
+
+  return (
+    <div className={classes.root}>
+      <GridList className={classes.gridList} cols={2.5}>
+        {tileData.map(tile => (
+          <GridListTile key={tile.img}>
+            <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+              actionIcon={
+                <IconButton>
+                  <StarBorderIcon className={classes.title} />
+                </IconButton>
+              }
+            />
+          </GridListTile>
+        ))}
+      </GridList>
+    </div>
+  );
+}
+
+SingleLineGridList.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SingleLineGridList);
+
+ <Toolbar variant="regular">
+          <Link to="/customers">
+            <Button variant="contained" color="primary" className={classes.button}>
+              Customers
+            </Button>
+          </Link>
+         <JobFormDialog 
+           jobs={props.jobs}
+           addNewJob={props.addNewJob}
+         />
+        </Toolbar>
+
+        <Tabs
+            value={value}
+            onChange={this.handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            scrollable
+            scrollButtons="auto"
+          >
+            <Tab label="Item One" />
+
+
+
+
+
+            dfjasdfjhasdjkkhfhdsf
+
+
+            import React, { Component, Fragment } from 'react'
+import JobList from "../components/JobList"
+import JobFormDialog from "../components/JobFormDialog"
+import { Link } from "react-router";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography"
+
+
+import BottomTabs from '../components/BottomTabs';
+
+
+export default class JobsContainer extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      jobs: [],
+      
+    }
+    this.addNewJob = this.addNewJob.bind(this)
+    this.deleteJobHandler = this.deleteJobHandler.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.editJobHandler = this.editJobHandler.bind(this)
+  }
+  
+   componentDidMount() {
+    fetch("/api/v1/jobs.json")
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => {
+        // console.log("response.status:", response.status);
+        // console.log("response.statusText:", response.statusText);
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ jobs: data });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  addNewJob(formPayLoad) {
+    fetch(`/api/v1/jobs`, {
+      method: "post",
+      body: JSON.stringify(formPayLoad),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ jobs: [...this.state.jobs, body] });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+
+  handleDelete(id){
+		fetch(`/api/v1/jobs/${id}`,
+		{
+			method: 'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json' } ,
+			credentials: 'same-origin'
+		})
+		.then(response => {
+			if (response.ok) {
+        this.deleteJobHandler(id)
+			}
+			else {
+				let errorMessage = `${response.status} (${response.statusText})`,
+					error = new Error(errorMessage)
+				throw error
+			}
+		})
+		.catch(error => {
+			console.error(`ERROR IN FETCH: ${error}`)
+		})
+  }
+  
+  deleteJobHandler(id){
+    let updatedJobList = this.state.jobs.filter((job) => job.id !== id)
+    this.setState({
+      jobs: updatedJobList
+    })
+  }
+
+  
+
+  editJobHandler(formPayload) {
+      fetch(`/api/v1/jobs/${formPayload.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(formPayload),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+      })
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          let findJob = job => {
+            return job.id === formPayload.id;            
+          }
+          let jobIndex = this.state.jobs.findIndex(findJob)
+          let newJobs = this.state.jobs
+          newJobs.splice(jobIndex, 1, body)
+      
+         this.setState({ jobs: newJobs })
+        })
+        .catch(error =>
+          console.error(`Error in fetch: ${error.message}`)
+        );
+    }
+    
+  render() {
+ 
+    return (
+        <div>
+        <main>
+        <BottomTabs 
+        // this is to pass the state to make a new job
+          jobs={this.state.jobs}
+          addNewJob={this.addNewJob}
+
+        />
+        <Typography align="center" variant="h3">
+            Your Jobs 
+        </Typography>
+        
+        <JobList  
+          editJobHandler={this.editJobHandler}
+          handleDelete={this.handleDelete}
+          jobs={this.state.jobs}
+          
+        />
+        </main>
+        <Link to="/customers">
+            <Button variant="contained" color="primary">
+              Customers
+            </Button>
+          </Link>
+         <JobFormDialog 
+           jobs={this.props.jobs}
+           addNewJob={this.addNewJob}
+         />
+     
+      </div>
+   
+  
+
+    )
+  }
+}
+
+import React, { Component, Fragment } from 'react'
+import JobTile from '../components/JobTile'
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List"
+import styled from "styled-components"
+import Grid from "@material-ui/core/Grid";
+
+
+
+export default class JobList extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      jobs: this.props.jobs
+    }
+
+  }
+
+  render() {
+    let jobCards = this.props.jobs.map((job) => {
+
+      let deleteJob = () => {
+        this.props.handleDelete(job.id)
+      }
+
+      return(
+        <div key={job.id}>
+          <JobTile
+            editJobHandler={this.props.editJobHandler}
+            jobId={job.id}
+            jobName={job.name}
+            notes={job.notes}
+            date={job.job_date}
+            firstName={job.customer.first_name}
+            lastName={job.customer.last_name}
+            phoneNumber={job.customer.phone_number}
+            address={job.customer.address}
+            city={job.customer.city}
+            state={job.customer.state}
+            zipCode={job.customer.zip_code}
+            notes={job.notes}
+            deleteJob={deleteJob}
+            
+          /> 
+        </div>
+      )
+    })
+    return (
+    
+      <div>
+          {jobCards}
+
+      </div>
+      
+    )
+  }
+}
+
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { Link } from "react-router"
+import Button from "@material-ui/core/Button"
+import JobFormDialog from "../components/JobFormDialog"
+import AppBar from "@material-ui/core/AppBar"
+
+const styles = {
+  root: {
+    flexGrow: 1
+  }
+};
+
+class CenteredTabs extends React.Component {
+  state = {
+    value: 0
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div>
+
+      <Paper className={classes.root}>
+        <Tabs
+          value={this.state.value}
+          onChange={this.handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          scrollable
+        >
+          <Tab label="Monday" />
+          <Tab label="Tuesday" />
+          <Tab label="Wednesday" />
+          <Tab label="Thursday" />
+          <Tab label="Friday" />
+          <Tab label="Saturday" />
+          <Tab label="Sunday" />
+        </Tabs>
+      </Paper>
+      </div>
+    );
+  }
+}
+
+CenteredTabs.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(CenteredTabs);
+

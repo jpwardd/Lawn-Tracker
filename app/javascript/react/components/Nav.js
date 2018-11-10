@@ -11,7 +11,6 @@ import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button"
 import { Link } from "react-router"
 
-import MenuDrawer from "../components/MenuDrawer"
 
 
 const styles = {
