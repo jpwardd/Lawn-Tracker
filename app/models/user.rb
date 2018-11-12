@@ -7,9 +7,5 @@ class User < ApplicationRecord
   has_many :customers
   has_many :jobs
   
-  validates :role, null: false
- 
-  def admin?
-    role == "admin"
-  end
+  
 end
