@@ -51,7 +51,7 @@ class MenuAppBar extends React.Component {
       .then(response => response.json())
       .then(data => {
         if (data) {
-          this.setState({ currentUser: data.user });
+          this.setState({ currentUser: data });
         } else {
           this.setState({ currentUser: null });
         }
@@ -79,22 +79,38 @@ class MenuAppBar extends React.Component {
       })
       .then(response => {
         this.setState({ currentUser: null });
+      
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  
+
   render() {
     const { classes } = this.props;
-
+     const children = React.Children.map(this.props.children, child => {
+       return React.cloneElement(child, {
+         currentUser: this.state.currentUser
+       });
+     });
+    
+    let button;
+    if (this.state.currentUser === null){
+      button =  <Button color="secondary"><a href="/users/sign_in">Login</a></Button>
+    } else {
+      button =  <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
+    }
     return (
       <div className={classes.root}>
         <AppBar color="primary" position="static">
           <Toolbar>
+          
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              JOB LIST
+              <Link to="/">LawnList</Link>
             </Typography>
             <Link to="/weather"><Button variant="contained" color="secondary">Weather</Button></Link>
-            <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
+            <Link to="/customers"><Button variant="contained" color="secondary">Customers</Button></Link>
+            {button}
           </Toolbar>
         </AppBar>
         {this.props.children}

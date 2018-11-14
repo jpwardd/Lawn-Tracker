@@ -13,9 +13,9 @@ export const App = (props) => {
       <Router history={browserHistory}>
         <Route path="/" component={Nav}>
         <IndexRoute component={JobsContainer} />
-        </Route>
         <Route path="/customers" component={CustomersContainer} />
         <Route path="/weather" component={Weather} />
+        </Route>
       </Router>
   
   )

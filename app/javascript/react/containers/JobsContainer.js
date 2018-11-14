@@ -161,7 +161,7 @@ export default class JobsContainer extends Component {
 
         />
         <Typography align="center" variant="h3">
-            Your Jobs 
+            Your Lawns 
         </Typography>
         
         <JobList  
@@ -172,11 +172,6 @@ export default class JobsContainer extends Component {
           
         />
         </main>
-        <Link to="/customers">
-            <Button variant="contained" color="primary">
-              Customers
-            </Button>
-          </Link>
          <JobFormDialog 
            jobs={this.props.jobs}
            addNewJob={this.addNewJob}
