@@ -51,7 +51,7 @@ export default class JobFormDialog extends React.Component {
       
       <div>
         <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-         Add A Job
+         Add A Lawn
         </Button>
         <Dialog
           open={this.state.open}
