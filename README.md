@@ -27,14 +27,14 @@ assuming you have both rails and yarn installed on your machine
 
 *Frameworks*
 
-*Devise gem - User authentications.
-*Material-ui - Google's ReactJs style library
-*ReactJs
+-Devise gem - User authentications.
+-Material-ui - Google's ReactJs style library
+-ReactJs
 
 *APIs*
 Google Maps
 
 *Features I'm Currently Working on*
 
-Employees - employees can sign in to a seperate account to view their lawn list.
-Dark Sky API - so the user is prepared for inclimate weather.
+-Employees - employees can sign in to a seperate account to view their lawn list.
+-Dark Sky API - so the user is prepared for inclimate weather.
