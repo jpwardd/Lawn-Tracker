@@ -57,12 +57,11 @@ class JobTile extends React.Component{
             <Typography variant="h6">
               {this.props.address}
             </Typography>
-
             <Typography variant="h6">
               {this.props.date}
             </Typography>
             <Typography variant="h6">
-              job notes:{this.props.notes}
+              notes: {this.props.notes}
             </Typography>
           </CardContent>
         </CardActionArea>

@@ -12,27 +12,28 @@ class JobFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      employeeId: "",
       customerId: "",
-      notes: "",
       selectedDate: new Date(),
+      notes: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleCustomerSelectChange = this.handleCustomerSelectChange.bind(this);
   }
 
+  
   handleSubmit(event) {
     event.preventDefault();
 
     let formPayload = {
-      name: this.state.name,
+      employee_id: +this.state.employeeId,
       customer_id: +this.state.customerId,
-      notes: this.state.notes,
-      job_date: this.state.selectedDate
+      job_date: this.state.selectedDate,
+      notes: this.state.notes
     };
     this.props.addNewJob(formPayload);
     this.handleClearForm();
@@ -40,9 +41,9 @@ class JobFormContainer extends Component {
 
   handleClearForm() {
     this.setState({
-      name: "",
       notes: "",
       customerId: "",
+      employeeId: "",
       selectedDate: new Date()
     });
   }
@@ -58,35 +59,60 @@ class JobFormContainer extends Component {
   };
 
   handleInputChange(event) {
-    let value = event.target.value
-    let name = event.target.name
-    this.setState({ [name]: value})
+    let value = event.target.value;
+    let name = event.target.name;
+    this.setState({ [name]: value });
   }
 
-  handleSelectChange = event => {
+  handleCustomerSelectChange = event => {
     this.setState({ customerId: event.target.value });
   };
 
-  
+  handleEmployeeSelectChange = event => {
+    this.setState({ employeeId: event.target.value });
+  };
+
   render() {
     const { selectedDate } = this.state;
     let customerSelect = this.props.customers.map(customer => {
       return (
-       <option key={customer.id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
+        <option key={customer.id} value={customer.id}>
+          {customer.first_name} {customer.last_name}
+        </option>
       );
     });
-  
+    
+    let employeeSelect = this.props.employees.map(employee => {
+    
+      return (
+        <option key={employee.id} value={employee.id}>
+          {employee.first_name} {employee.last_name}
+        </option>
+      );
+    });
+
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <form className="container" onSubmit={this.handleSubmit}>
-          <TextField
-            variant="standard"
-            content={this.state.name}
-            name="name"
-            placeholder="Job name"
-            value={this.state.name}
-            onChange={this.handleInputChange}
-            fullWidth
+          <select onChange={this.handleCustomerSelectChange}>
+            <option selected="true" disabled="disabled">
+              Choose A Customer
+            </option>
+            {customerSelect}
+          </select>
+
+          <select onChange={this.handleEmployeeSelectChange}>
+            <option selected="true" disabled="disabled">
+              Choose A Employee
+            </option>
+            {employeeSelect}
+          </select>
+
+          <InlineDatePicker
+            label="add date"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            fullWidth={true}
           />
           <TextField
             variant="standard"
@@ -96,19 +122,6 @@ class JobFormContainer extends Component {
             value={this.state.notes}
             onChange={this.handleInputChange}
             fullWidth
-          />
-    
-         <select onChange={this.handleSelectChange} >
-
-          <option selected="true" disabled="disabled">Choose A Customer</option>
-            {customerSelect}
-          </select>
-         
-          <InlineDatePicker
-            label="add date"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            fullWidth={true}
           />
         </form>
         <Button

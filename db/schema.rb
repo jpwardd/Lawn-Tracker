@@ -9,13 +9,15 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2018_11_12_012813) do
+
+ActiveRecord::Schema.define(version: 2018_11_15_153800) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "last_name"
     t.string "phone_number", null: false
     t.string "email"
     t.string "address", null: false
@@ -28,15 +30,27 @@ ActiveRecord::Schema.define(version: 2018_11_12_012813) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
-  create_table "jobs", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "customer_id"
-    t.text "notes"
-    t.datetime "job_date", null: false
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password", null: false
     t.bigint "user_id", null: false
+    t.bigint "job_id"
+    t.index ["job_id"], name: "index_employees_on_job_id"
+    t.index ["user_id"], name: "index_employees_on_user_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.datetime "job_date", null: false
+    t.text "notes"
+    t.bigint "user_id", null: false
+    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_jobs_on_customer_id"
+    t.index ["employee_id"], name: "index_jobs_on_employee_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 

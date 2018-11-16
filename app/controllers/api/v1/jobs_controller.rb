@@ -9,6 +9,7 @@ class Api::V1::JobsController < ApplicationController
   end
 
   def create
+    binding.pry
     job = Job.new(job_params)
     job.user = current_user
     if job.save
@@ -22,17 +23,6 @@ class Api::V1::JobsController < ApplicationController
     job = Job.find(job_params[:id])
     job.user = current_user
     
-    # job.attributes = {
-    #   job_id: job_params[:job_id],
-    #   name: job_params[:name],
-    #   customer_id: job_params[:customer_id],
-    #   notes: job_params[:notes],
-    #   job_date: job_params[:job_date],
-    #   user_id: job_params[:user_id],
-    #   id: job_params[:id],
-      
-    # }
-    
     if job.update(job_params)
 		  render json: job
 		end
@@ -44,6 +34,6 @@ class Api::V1::JobsController < ApplicationController
   private
 
   def job_params
-    params.permit(:id, :name, :customer_id, :notes, :job_date, :user_id, user: current_user) 
+    params.permit(:id, :customer_id, :job_date, :notes, :user_id, :employee_id, user: current_user) 
   end
 end

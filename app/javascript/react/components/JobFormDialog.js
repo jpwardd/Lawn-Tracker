@@ -63,6 +63,7 @@ export default class JobFormDialog extends React.Component {
             <JobFormContainer 
               addNewJob={this.props.addNewJob}
               customers={this.state.customers}
+              employees={this.props.employees}
             />
             
           </DialogContent>

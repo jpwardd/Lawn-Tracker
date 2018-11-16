@@ -24,7 +24,6 @@ export default class JobList extends Component {
           <JobTile
             editJobHandler={this.props.editJobHandler}
             jobId={job.id}
-            jobName={job.name}
             notes={job.notes}
             date={job.presentable_job_date}
             firstName={job.customer.first_name}
