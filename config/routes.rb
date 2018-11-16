@@ -6,23 +6,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :customers, only: [:index, :create, :update, :show, :destroy]
       resources :jobs, only: [:index, :create, :update, :destroy]
-
-    end
-  end
-
-  
-  namespace :api do
-    namespace :v1 do
       resources :users, only: [:index, :new, :create, :destroy]
+      resources :weather, only: [:index]
+      resources :employees, only: [:index, :update, :create, :destroy]
     end
   end
 
-  namespace :api do
-    namespace :v1 do
-      resources :weather, only: [:index]
-    end
-  end
-  
   get "/", to: "homes#index"
   get "/customers", to: "homes#index"
+  get "/employees", to: "homes#index"
 end

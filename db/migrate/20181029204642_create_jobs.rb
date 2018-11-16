@@ -5,6 +5,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.datetime :job_date, null: false
       t.text :notes
       t.belongs_to :user, null: false
+      t.belongs_to :employee
 
       t.timestamps null: false
     end

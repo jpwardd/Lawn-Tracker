@@ -104,12 +104,12 @@ class MenuAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar color="primary" position="static">
           <Toolbar>
-          
             <Typography variant="h6" color="inherit" className={classes.grow}>
               <Link to="/">LawnList</Link>
             </Typography>
             <Link to="/weather"><Button variant="contained" color="secondary">Weather</Button></Link>
             <Link to="/customers"><Button variant="contained" color="secondary">Customers</Button></Link>
+            <Link to="/employees"><Button variant="contained" color="secondary">Employees</Button></Link>
             {button}
           </Toolbar>
         </AppBar>

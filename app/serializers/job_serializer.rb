@@ -1,5 +1,5 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :name, :customer_id, :notes, :presentable_job_date, :user_id, :day_of_week
+  attributes :id, :customer_id, :presentable_job_date, :notes, :user_id, :employee_id, :day_of_week
 
   belongs_to :customer
   belongs_to :user   

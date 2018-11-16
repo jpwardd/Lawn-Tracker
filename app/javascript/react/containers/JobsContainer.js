@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import DayTabs from "../components/DayTabs"
 import styled from "styled-components"
 import BottomNav from '../components/BottomNav';
+import Grid from "@material-ui/core/Grid"
 
 const Container = styled.div`
   border: 2px solid #d7d9dd;
@@ -17,6 +18,7 @@ export default class JobsContainer extends Component {
     super(props);
     this.state = {
       jobs: [],
+      employees: [],
       day: "Monday"
       
     }
@@ -25,6 +27,7 @@ export default class JobsContainer extends Component {
     this.handleDelete = this.handleDelete.bind(this)
     this.editJobHandler = this.editJobHandler.bind(this)
     this.updateDay = this.updateDay.bind(this)
+    this.fetchEmployees = this.fetchEmployees.bind(this)
   }
   
    componentDidMount() {
@@ -47,6 +50,28 @@ export default class JobsContainer extends Component {
         this.setState({ jobs: data });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
+      this.fetchEmployees()
+  }
+
+  fetchEmployees() {
+    let employeeURL = `/api/v1/employees`;
+    fetch(employeeURL)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        employees: data
+      })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   addNewJob(formPayLoad) {
@@ -152,7 +177,6 @@ export default class JobsContainer extends Component {
  
     return (
       <div>
-        <main>
         <DayTabs 
         // this is to pass the state to make a new job
           jobs={this.state.jobs}
@@ -160,10 +184,11 @@ export default class JobsContainer extends Component {
           updateDay={this.updateDay}
 
         />
+      <Grid container spacing={24}>
+        <Grid item xs={6}>
         <Typography align="center" variant="h3">
             Your Lawns 
         </Typography>
-        
         <JobList  
           editJobHandler={this.editJobHandler}
           handleDelete={this.handleDelete}
@@ -171,9 +196,13 @@ export default class JobsContainer extends Component {
           day={this.state.day}
           
         />
-        </main>
+        </Grid>
+
+        {/* this is the space for crews component */}
+      </Grid>
          <JobFormDialog 
            jobs={this.props.jobs}
+           employees={this.state.employees}
            addNewJob={this.addNewJob}
          />
      
