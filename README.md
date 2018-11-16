@@ -3,7 +3,7 @@
 A productivity app for the landscaping industry!
 
 
-###*Getting Started*
+###Getting Started
 
 assuming you have both rails and yarn installed on your machine
 
