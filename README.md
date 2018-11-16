@@ -1,4 +1,4 @@
-##*Lawn-List*
+*Lawn-List*
 ---
 A productivity app for the landscaping industry!
 
