@@ -1,7 +1,6 @@
 class Api::V1::EmployeesController < ApplicationController
    protect_from_forgery unless: -> { request.format.json? }
   
-
   def index
   
   

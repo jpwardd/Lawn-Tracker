@@ -9,7 +9,6 @@ class Api::V1::JobsController < ApplicationController
   end
 
   def create
-    binding.pry
     job = Job.new(job_params)
     job.user = current_user
     if job.save

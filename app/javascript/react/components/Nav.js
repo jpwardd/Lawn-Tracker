@@ -26,7 +26,7 @@ const styles = {
   }
 };
 
-class MenuAppBar extends React.Component {
+class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,8 +84,6 @@ class MenuAppBar extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  
-
   render() {
     const { classes } = this.props;
      const children = React.Children.map(this.props.children, child => {
@@ -94,12 +92,6 @@ class MenuAppBar extends React.Component {
        });
      });
     
-    let button;
-    if (this.state.currentUser === null){
-      button =  <Button color="secondary"><a href="/users/sign_in">Login</a></Button>
-    } else {
-      button =  <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
-    }
     return (
       <div className={classes.root}>
         <AppBar color="primary" position="static">
@@ -110,7 +102,7 @@ class MenuAppBar extends React.Component {
             <Link to="/weather"><Button variant="contained" color="secondary">Weather</Button></Link>
             <Link to="/customers"><Button variant="contained" color="secondary">Customers</Button></Link>
             <Link to="/employees"><Button variant="contained" color="secondary">Employees</Button></Link>
-            {button}
+            <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
           </Toolbar>
         </AppBar>
         {this.props.children}
@@ -119,8 +111,8 @@ class MenuAppBar extends React.Component {
   }
 }
 
-MenuAppBar.propTypes = {
+Nav.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuAppBar);
+export default withStyles(styles)(Nav);
