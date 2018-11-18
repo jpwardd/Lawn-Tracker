@@ -6,6 +6,7 @@ import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider
 import InlineDatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
 import Input from "@material-ui/core/Input";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 class JobEditFormContainer extends Component {
   constructor(props) {
@@ -98,12 +99,15 @@ class JobEditFormContainer extends Component {
             fullWidth
           />
 
-          <select onChange={this.handleSelectChange}>
+          <NativeSelect 
+            onChange={this.handleSelectChange}
+            fullWidth
+          >
             <option selected="true" disabled="disabled">
               Choose A Customer
             </option>
             {customerSelect}
-          </select>
+          </NativeSelect>
 
           <InlineDatePicker
             label="add date"
