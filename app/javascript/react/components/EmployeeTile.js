@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from "react";
+import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText"
+import Typography from "@material-ui/core/Typography"
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
+import Grid from "@material-ui/core/Grid"
 
 export default class EmployeeTile extends Component {
   constructor(props) {
@@ -78,9 +82,35 @@ export default class EmployeeTile extends Component {
       );
     }
 
+    let employeeWorkload = this.props.employeeJobs.map((job) => {
+
+      return (
+        <div key={job.id}>
+        <Paper>
+          <List>
+            <ListItem>
+              <Typography variant="body2">
+                customer: {job.customer.first_name} {job.customer.last_name}
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography variant="body2">
+                date: {job.presentable_job_date}
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography variant="body2">
+                address: {job.customer.address}
+              </Typography>
+            </ListItem>
+          </List>
+          </Paper>
+        </div>
+      )
+    })
       return (
         <div>
-          <form className="customer-edit">
+          <form>
             <label>First Name</label>
             <input
               className={`customer-edit-input${className}`}
@@ -120,6 +150,7 @@ export default class EmployeeTile extends Component {
               Delete
             </Button>
           </form>
+            {employeeWorkload}
         </div>
       );
     }

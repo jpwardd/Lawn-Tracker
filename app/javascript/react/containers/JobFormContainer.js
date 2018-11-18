@@ -6,6 +6,8 @@ import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider
 import TimePicker from "material-ui-pickers/TimePicker";
 import InlineDatePicker from "material-ui-pickers/DatePicker";
 import DateTimePicker from "material-ui-pickers/DateTimePicker";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem"
 
 
 class JobFormContainer extends Component {
@@ -83,7 +85,6 @@ class JobFormContainer extends Component {
     });
     
     let employeeSelect = this.props.employees.map(employee => {
-    
       return (
         <option key={employee.id} value={employee.id}>
           {employee.first_name} {employee.last_name}
@@ -95,14 +96,14 @@ class JobFormContainer extends Component {
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <form className="container" onSubmit={this.handleSubmit}>
           <select onChange={this.handleCustomerSelectChange}>
-            <option selected="true" disabled="disabled">
+            <option disabled selected value>
               Choose A Customer
             </option>
             {customerSelect}
           </select>
 
           <select onChange={this.handleEmployeeSelectChange}>
-            <option selected="true" disabled="disabled">
+            <option disabled selected value>
               Choose A Employee
             </option>
             {employeeSelect}

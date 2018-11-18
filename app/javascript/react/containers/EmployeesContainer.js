@@ -9,6 +9,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import EmployeeFormDialog from "../components/EmployeeFormDialog";
 
+
 const Container = styled.div`
   border: 3px solid lightgrey;
   width: 75%;
@@ -151,10 +152,9 @@ export default class EmployeesContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
   render() {
     let employees = this.state.employees.map(employee => {
-      
+    
       let deleteEmployee = () => {
         this.handleDelete(employee.id);
       };
@@ -168,7 +168,9 @@ export default class EmployeesContainer extends Component {
               lastName={employee.last_name}
               email={employee.email}
               editEmployeeHandler={this.editEmployeeHandler}
+              employeeId={this.state.employeeId}
               deleteEmployee={deleteEmployee}
+              employeeJobs={employee.jobs}
             />
           </List>
         </div>
@@ -181,7 +183,6 @@ export default class EmployeesContainer extends Component {
         <Typography align="center" variant="h2" gutterBottom>
           Employees
         </Typography>
-
         <Container>
           <FormDialog>
             <EmployeeFormDialog
