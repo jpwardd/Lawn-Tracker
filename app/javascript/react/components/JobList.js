@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import JobTile from '../components/JobTile'
+import Grid from "@material-ui/core/Grid"
 
 
 export default class JobList extends Component {
@@ -21,19 +22,27 @@ export default class JobList extends Component {
       }
       return(
         <div key={job.id}>
-          <JobTile
-            editJobHandler={this.props.editJobHandler}
-            jobId={job.id}
-            notes={job.notes}
-            date={job.presentable_job_date}
-            firstName={job.customer.first_name}
-            lastName={job.customer.last_name}
-            phoneNumber={job.customer.phone_number}
-            address={job.customer.address}
-            deleteJob={deleteJob}
-            lat={+job.customer.lat}
-            lng={+job.customer.lng}
-          /> 
+          <Grid 
+            container 
+            spacing={8}
+            justify="center"
+          >
+            <Grid item xs={10} sm={9}>
+              <JobTile
+                editJobHandler={this.props.editJobHandler}
+                jobId={job.id}
+                notes={job.notes}
+                date={job.presentable_job_date}
+                firstName={job.customer.first_name}
+                lastName={job.customer.last_name}
+                phoneNumber={job.customer.phone_number}
+                address={job.customer.address}
+                deleteJob={deleteJob}
+                lat={+job.customer.lat}
+                lng={+job.customer.lng}
+              /> 
+              </Grid>
+            </Grid>
         </div>
       )
     })

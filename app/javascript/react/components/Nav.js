@@ -99,9 +99,9 @@ class Nav extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.grow}>
               <Link to="/">LawnList</Link>
             </Typography>
-            <Link to="/weather"><Button variant="contained" color="secondary">Weather</Button></Link>
-            <Link to="/customers"><Button variant="contained" color="secondary">Customers</Button></Link>
-            <Link to="/employees"><Button variant="contained" color="secondary">Employees</Button></Link>
+            <Link to="/weather"><Button color="inherit">Weather</Button></Link>
+            <Link to="/customers"><Button color="inherit">Customers</Button></Link>
+            <Link to="/employees"><Button color="inherit">Employees</Button></Link>
             <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
           </Toolbar>
         </AppBar>

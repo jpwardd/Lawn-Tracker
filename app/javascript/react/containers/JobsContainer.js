@@ -184,11 +184,10 @@ export default class JobsContainer extends Component {
           updateDay={this.updateDay}
 
         />
-      <Grid container spacing={24}>
-        <Grid item xs={6}>
-        <Typography align="center" variant="h3">
+        <Typography align="center" variant="h5">
             Your Lawns 
         </Typography>
+    
         <JobList  
           editJobHandler={this.editJobHandler}
           handleDelete={this.handleDelete}
@@ -196,10 +195,7 @@ export default class JobsContainer extends Component {
           day={this.state.day}
           
         />
-        </Grid>
-
-        {/* this is the space for crews component */}
-      </Grid>
+      
          <JobFormDialog 
            jobs={this.props.jobs}
            employees={this.state.employees}
