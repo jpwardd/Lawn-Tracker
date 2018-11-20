@@ -26,18 +26,16 @@ class JobTile extends React.Component{
     super(props);
   }
 
-
   render() {
       let center = {
         lat: this.props.lat,
         lng: this.props.lng
     }
 
-
     const { classes } = this.props;
     return(
       <Card>
-        <CardActionArea>
+  
          <div style={{ height: '20vh', width: '100%' }}>
               <GoogleMapReact
               bootstrapURLKeys={{ key:"AIzaSyA5YTh0MG0kmemXVlsl8VDbiHVUQaebWfU"}}
@@ -64,7 +62,6 @@ class JobTile extends React.Component{
               notes: {this.props.notes}
             </Typography>
           </CardContent>
-        </CardActionArea>
         <CardActions>
           <Button color="secondary" variant="contained" onClick={this.props.deleteJob}>
             Delete
