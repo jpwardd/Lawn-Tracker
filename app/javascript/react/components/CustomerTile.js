@@ -7,8 +7,12 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import GoogleMapReact from "google-map-react";
 import IconButton from "@material-ui/core/IconButton"
 import AddressSearchInput from "../components/AddressSearchInput"
+import Typography from "@material-ui/core/Typography"
+import styled from "styled-components"
 
-
+const EditContainer = styled.div`
+  padding: 8px;
+`
 
 export default class CustomerTile extends Component { 
   constructor(props) {
@@ -34,7 +38,6 @@ export default class CustomerTile extends Component {
 }
 
  
-
 handleSubmit(event) {
     event.preventDefault();
     let formPayload = {
@@ -76,7 +79,7 @@ handleSubmit(event) {
     
     let button;
     if (this.state.edit !== true) {
-      button = <Button className="warning" variant="contained" onClick={this.editHandler}>edit</Button>
+      button = <Button color="primary" variant="contained" onClick={this.editHandler}>edit</Button>
     } else {
       button = <Button className="success" type="submit" variant="contained" value="submit" onClick={this.handleSubmit} >save</Button>;
     }
@@ -90,12 +93,11 @@ handleSubmit(event) {
     return (
       <div>
         <Paper>
-          <ListItem>
+        <ListItem>
+          <Button onClick={this.props.showFullCustomer}>
             {this.props.firstName} {this.props.lastName}
-          </ListItem>
-          <IconButton onClick={this.props.showFullCustomer} color="inherit">
-            <MoreIcon />
-          </IconButton>
+          </Button>
+        </ListItem>
         </Paper>
       </div>
     )
@@ -103,15 +105,12 @@ handleSubmit(event) {
       return (
         <div>
           <Paper className="name">
-          <Button onClick={this.props.showFullCustomer}>
+          <Button color="secondary" variant="contained" onClick={this.props.showFullCustomer}>
             done
           </Button>
-            <ListItem>
-              {this.props.firstName} {this.props.lastName}
-            </ListItem>
-          </Paper>
-        
-            <form className="customer-edit">
+          <EditContainer>
+
+            <form>
               <label>First Name</label>
               <input 
                 className={`customer-edit-input${className}`}
@@ -178,6 +177,8 @@ handleSubmit(event) {
               Delete
             </Button>
             </form>
+          </EditContainer>
+          </Paper>
         </div>
       )
     }

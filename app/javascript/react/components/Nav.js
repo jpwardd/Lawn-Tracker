@@ -23,6 +23,9 @@ const styles = {
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  link: {
+    color: "black"
   }
 };
 
@@ -97,12 +100,12 @@ class Nav extends React.Component {
         <AppBar color="primary" position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link to="/">LawnList</Link>
+              <Link className={classes.link} to="/">LawnList</Link>
             </Typography>
-            <Link to="/weather"><Button color="inherit">Weather</Button></Link>
-            <Link to="/customers"><Button color="inherit">Customers</Button></Link>
-            <Link to="/employees"><Button color="inherit">Employees</Button></Link>
-            <Button color="secondary" onClick={this.userSignOut}>Logout</Button>
+            <Link className={classes.link} to="/weather"><Button color="inherit">Weather</Button></Link>
+            <Link className={classes.link} to="/customers"><Button color="inherit">Customers</Button></Link>
+            <Link className={classes.link} to="/employees"><Button color="inherit">Employees</Button></Link>
+            <Button className={classes.link} onClick={this.userSignOut}>Logout</Button>
           </Toolbar>
         </AppBar>
         {this.props.children}

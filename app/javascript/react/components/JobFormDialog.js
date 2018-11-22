@@ -5,6 +5,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import JobFormContainer from "../containers/JobFormContainer";
+import AddIcon from "@material-ui/icons/Add";
 
 
 export default class JobFormDialog extends React.Component {
@@ -50,8 +51,8 @@ export default class JobFormDialog extends React.Component {
     return (
       
       <div>
-        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-         Add A Lawn
+        <Button variant="fab" color="primary" onClick={this.handleClickOpen}>
+         <AddIcon />
         </Button>
         <Dialog
           open={this.state.open}
