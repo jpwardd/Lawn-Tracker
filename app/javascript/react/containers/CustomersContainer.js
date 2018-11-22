@@ -11,11 +11,14 @@ import CustomerFormDialog from "../components/CustomerFormDialog"
 
 
 const Container = styled.div`
-  border: 3px solid lightgrey;
+
+  box-shadow: 3px 5px 7px #ccc;
+  border-radius: 20px;
   width: 75%;
   height: 100%;
   margin: 50px auto;
   padding: 20px;
+  background-color: #739574;
 `;
 
 const FormDialog = styled.div`
@@ -172,7 +175,7 @@ export default class CustomersContainer extends Component {
       let deleteCustomer = () => {
         this.handleDelete(customer.id)
       }
-   
+    
       return (
         <div key={customer.id}>
           <List>
@@ -198,7 +201,7 @@ export default class CustomersContainer extends Component {
     return (
       <div>
         <BackButton />
-        <Typography align="center" variant="h2" gutterBottom>
+        <Typography align="center" variant="h4" gutterBottom>
           Customers
         </Typography>
       

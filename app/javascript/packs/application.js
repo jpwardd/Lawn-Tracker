@@ -3,15 +3,17 @@ import { render } from 'react-dom'
 import App from '../react/components/app'
 import RedBox from 'redbox-react'
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { lightGreen } from '@material-ui/core/colors'
+import { amber } from '@material-ui/core/colors'
 
 
 
 const theme = createMuiTheme({
   palette: {
-    primary: lightGreen,
+    primary: {
+      main: "#ffffff"
+    },
     secondary: {
-      main: "#558b2f"
+      main: "#f44336"
     }
   }
 });

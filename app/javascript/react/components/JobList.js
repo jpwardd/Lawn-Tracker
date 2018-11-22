@@ -24,7 +24,7 @@ export default class JobList extends Component {
         <div key={job.id}>
           <Grid 
             container 
-            spacing={8}
+            spacing={32}
             justify="center"
           >
             <Grid item xs={10} sm={9}>

@@ -184,10 +184,15 @@ export default class JobsContainer extends Component {
           updateDay={this.updateDay}
 
         />
-        <Typography align="center" variant="h5">
-            Your Lawns 
-        </Typography>
     
+         <JobFormDialog 
+           jobs={this.props.jobs}
+           employees={this.state.employees}
+           addNewJob={this.addNewJob}
+         />
+        <Typography align="center" variant="h5">
+            Lawn Dashboard
+        </Typography>
         <JobList  
           editJobHandler={this.editJobHandler}
           handleDelete={this.handleDelete}
@@ -196,11 +201,6 @@ export default class JobsContainer extends Component {
           
         />
       
-         <JobFormDialog 
-           jobs={this.props.jobs}
-           employees={this.state.employees}
-           addNewJob={this.addNewJob}
-         />
      
       </div>
    

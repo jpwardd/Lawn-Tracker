@@ -8,7 +8,10 @@ import Tab from "@material-ui/core/Tab";
 const styles = {
   root: {
     flexGrow: 1
-  }
+  },
+  tabs: {
+    backgroundColor: "#739574"
+  },
 };
 
 class DayTabs extends React.Component {
@@ -29,6 +32,7 @@ class DayTabs extends React.Component {
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}
+            className={classes.tabs}
             indicatorColor="primary"
             textColor="primary"
             scrollable

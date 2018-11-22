@@ -13,12 +13,11 @@ import GoogleMapReact from "google-map-react";
 
 const styles = {
   card: {
-    maxWidth: 345,
-    margin: 8,
+    backgroundColor: "#FAFAFA"
   },
   media: {
-    height: 140,
-  },
+    height: 140
+  }
 };
 
 class JobTile extends React.Component{
@@ -34,7 +33,7 @@ class JobTile extends React.Component{
 
     const { classes } = this.props;
     return(
-      <Card>
+      <Card className={classes.card}>
   
          <div style={{ height: '20vh', width: '100%' }}>
               <GoogleMapReact
@@ -63,13 +62,13 @@ class JobTile extends React.Component{
             </Typography>
           </CardContent>
         <CardActions>
-          <Button color="secondary" variant="contained" onClick={this.props.deleteJob}>
-            Delete
-          </Button>
          <JobEditDialog 
            editJobHandler={this.props.editJobHandler}
            jobId={this.props.jobId}
          />
+          <Button color="secondary" variant="contained" onClick={this.props.deleteJob}>
+            Delete
+          </Button>
         </CardActions>
       </Card>
     )

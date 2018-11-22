@@ -59,34 +59,14 @@ export default class EmployeeTile extends Component {
 
     let button;
     if (this.state.edit !== true) {
-      button = (
-        <Button
-          className="warning"
-          variant="contained"
-          onClick={this.editHandler}
-        >
-          edit
-        </Button>
-      );
+      button = <Button color="primary" variant="contained" onClick={this.editHandler}>edit</Button>
     } else {
-      button = (
-        <Button
-          className="success"
-          type="submit"
-          variant="contained"
-          value="submit"
-          onClick={this.handleSubmit}
-        >
-          save
-        </Button>
-      );
+      button = <Button className="success" type="submit" variant="contained" value="submit" onClick={this.handleSubmit} >save</Button>;
     }
 
     let employeeWorkload = this.props.employeeJobs.map((job) => {
-
       return (
         <div key={job.id}>
-        <Paper>
           <List>
             <ListItem>
               <Typography variant="body2">
@@ -104,12 +84,28 @@ export default class EmployeeTile extends Component {
               </Typography>
             </ListItem>
           </List>
-          </Paper>
         </div>
       )
     })
-      return (
-        <div>
+
+  if (this.props.employeeId != this.props.id) {
+     return (
+      <div>
+        <Paper>
+        <ListItem>
+          <Button onClick={this.props.showFullEmployee}>
+            {this.props.firstName} {this.props.lastName}
+          </Button>
+        </ListItem>
+        </Paper>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+       <Button color="primary" variant="contained" onClick={this.props.showFullEmployee}>
+         done
+        </Button>
           <form>
             <label>First Name</label>
             <input
@@ -153,5 +149,7 @@ export default class EmployeeTile extends Component {
             {employeeWorkload}
         </div>
       );
+      
     }
   }
+}
