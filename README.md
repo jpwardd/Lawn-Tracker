@@ -10,16 +10,12 @@ A productivity app for the landscaping industry!
 2. In command line open the directory of where you cloned the project to.
 3. Run the following to install the necessary dependencies.
 ---
-<ul>
-  <li><code>$ bundle install<code></li>
-  <li><code>$ yarn install</code></li>
-</ul>
+  <p><code>$ bundle install<code></p>
+  <p><code>$ yarn install</code></p>
 
 4. Create and prepare the database.
-<ul>
-  <li><code>$ bundle exec rake:db create</code></li>
-  <li><code>$ bundle exec rake:db migrate</code></li>
-</ul>
+  <p><code>$ bundle exec rake:db create</code></p>
+  <p><code>$ bundle exec rake:db migrate</code></p>
 5. Start the rails server by running the following. Then visit localhost:3000 in your browser of choice.
 <ul>
   <li><code>$ rails s</code></li>
