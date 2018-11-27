@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import DayTabs from "../components/DayTabs"
 import styled from "styled-components"
-import BottomNav from '../components/BottomNav';
 import Grid from "@material-ui/core/Grid"
 
 const Container = styled.div`
@@ -178,11 +177,9 @@ export default class JobsContainer extends Component {
     return (
       <div>
         <DayTabs 
-        // this is to pass the state to make a new job
           jobs={this.state.jobs}
           addNewJob={this.addNewJob}
           updateDay={this.updateDay}
-
         />
     
          <JobFormDialog 
@@ -191,22 +188,16 @@ export default class JobsContainer extends Component {
            addNewJob={this.addNewJob}
          />
         <Typography align="center" variant="h5">
-            Lawn Dashboard
+            {this.state.day}'s Lawns
         </Typography>
         <JobList  
           editJobHandler={this.editJobHandler}
           handleDelete={this.handleDelete}
           jobs={this.state.jobs}
           day={this.state.day}
-          
+          employees={this.state.employees}
         />
-      
-     
       </div>
-   
-   
-  
-
     )
   }
 }

@@ -32,6 +32,7 @@ class JobTile extends React.Component{
     }
 
     const { classes } = this.props;
+    
     return(
       <Card className={classes.card}>
   
@@ -44,7 +45,9 @@ class JobTile extends React.Component{
               </GoogleMapReact>
         </div>
           <CardContent>
-        
+            <Typography variant="h5">
+              Customers Info:
+            </Typography>
             <Typography align="center" variant="h6">
               {this.props.jobName}
             </Typography>

@@ -51,7 +51,7 @@ export default class JobFormDialog extends React.Component {
     return (
       
       <div>
-        <Button variant="fab" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="fab" color="secondary" onClick={this.handleClickOpen}>
          <AddIcon />
         </Button>
         <Dialog

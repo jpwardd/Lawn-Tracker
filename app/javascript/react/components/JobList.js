@@ -40,6 +40,7 @@ export default class JobList extends Component {
                 deleteJob={deleteJob}
                 lat={+job.customer.lat}
                 lng={+job.customer.lng}
+                employees={this.props.employees}
               /> 
               </Grid>
             </Grid>

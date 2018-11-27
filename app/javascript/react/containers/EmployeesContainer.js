@@ -10,14 +10,14 @@ import EmployeeFormDialog from "../components/EmployeeFormDialog";
 
 
 const Container = styled.div`
-  border: 2px solid lightgrey;
+  border: 1px solid lightgrey;
   border-radius: 20px;
   box-shadow: 3px 5px 7px #ccc;
   width: 75%;
   height: 100%;
   margin: 50px auto;
   padding: 20px;
-  background-color: #739574;
+  background-color: #f3f3f3;
 `;
 
 const FormDialog = styled.div`
@@ -185,7 +185,7 @@ export default class EmployeesContainer extends Component {
               editEmployeeHandler={this.editEmployeeHandler}
               employeeId={this.state.employeeId}
               deleteEmployee={deleteEmployee}
-              employeeJobs={employee.jobs}
+              workLoad={employee.jobs}
               showFullEmployee={showFullEmployee}
             />
           </List>
@@ -195,11 +195,10 @@ export default class EmployeesContainer extends Component {
 
     return (
       <div>
-        <BackButton />
-        <Typography align="center" variant="h2" gutterBottom>
+        <Container>
+        <Typography align="center" variant="h4" gutterBottom>
           Employees
         </Typography>
-        <Container>
           <FormDialog>
             <EmployeeFormDialog
               employees={this.state.employees}
