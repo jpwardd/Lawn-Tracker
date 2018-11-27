@@ -10,7 +10,7 @@ const styles = {
     flexGrow: 1
   },
   tabs: {
-    backgroundColor: "#739574"
+    backgroundColor: "#FFFFFF"
   },
 };
 

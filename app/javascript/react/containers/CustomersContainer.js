@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import List from "@material-ui/core/List"
 import CustomerTile from "../components/CustomerTile"
 import Typography from "@material-ui/core/Typography"
-import BackButton from '../components/BackButton';
 import styled from "styled-components"
 import Card from "@material-ui/core/Card"
 import AddIcon from "@material-ui/icons/Add";
@@ -11,14 +10,13 @@ import CustomerFormDialog from "../components/CustomerFormDialog"
 
 
 const Container = styled.div`
-
   box-shadow: 3px 5px 7px #ccc;
   border-radius: 20px;
   width: 75%;
   height: 100%;
   margin: 50px auto;
   padding: 20px;
-  background-color: #739574;
+  background-color: #F3F3F3;
 `;
 
 const FormDialog = styled.div`
@@ -200,12 +198,11 @@ export default class CustomersContainer extends Component {
     });
     return (
       <div>
-        <BackButton />
+      <Container>
         <Typography align="center" variant="h4" gutterBottom>
           Customers
         </Typography>
       
-      <Container>
       <FormDialog>
         <CustomerFormDialog 
           customers={this.state.customers}

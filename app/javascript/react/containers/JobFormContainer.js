@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { withStyles } from "@material-ui/core/styles"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
@@ -91,7 +92,6 @@ class JobFormContainer extends Component {
         </option>
       );
     });
-
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <form className="container" onSubmit={this.handleSubmit}>
@@ -115,7 +115,7 @@ class JobFormContainer extends Component {
             {employeeSelect}
           </NativeSelect>
 
-          <InlineDatePicker
+          <InlineDatePicker 
             label="add date"
             value={selectedDate}
             onChange={this.handleDateChange}

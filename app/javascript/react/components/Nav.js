@@ -25,7 +25,8 @@ const styles = {
     marginRight: 20
   },
   link: {
-    color: "black"
+    color: "#ffffff",
+    fontWeight: "bold"
   }
 };
 
@@ -100,9 +101,9 @@ class Nav extends React.Component {
         <AppBar color="primary" position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              <Link className={classes.link} to="/">LawnList</Link>
+              <Link className={classes.link} to="/">Lawn Tracker</Link>
             </Typography>
-            <Link className={classes.link} to="/weather"><Button color="inherit">Weather</Button></Link>
+            <Link className={classes.link} to="/"><Button color="inherit">Lawns</Button></Link>
             <Link className={classes.link} to="/customers"><Button color="inherit">Customers</Button></Link>
             <Link className={classes.link} to="/employees"><Button color="inherit">Employees</Button></Link>
             <Button className={classes.link} onClick={this.userSignOut}>Logout</Button>

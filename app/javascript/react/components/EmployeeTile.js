@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid"
+import WorkLoad from "../components/WorkLoad"
 
 export default class EmployeeTile extends Component {
   constructor(props) {
@@ -63,30 +64,6 @@ export default class EmployeeTile extends Component {
     } else {
       button = <Button className="success" type="submit" variant="contained" value="submit" onClick={this.handleSubmit} >save</Button>;
     }
-
-    let employeeWorkload = this.props.employeeJobs.map((job) => {
-      return (
-        <div key={job.id}>
-          <List>
-            <ListItem>
-              <Typography variant="body2">
-                customer: {job.customer.first_name} {job.customer.last_name}
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography variant="body2">
-                date: {job.presentable_job_date}
-              </Typography>
-            </ListItem>
-            <ListItem>
-              <Typography variant="body2">
-                address: {job.customer.address}
-              </Typography>
-            </ListItem>
-          </List>
-        </div>
-      )
-    })
 
   if (this.props.employeeId != this.props.id) {
      return (
@@ -146,7 +123,12 @@ export default class EmployeeTile extends Component {
               Delete
             </Button>
           </form>
-            {employeeWorkload}
+          <Typography variant="h6" align="center">
+            {this.state.firstName}'s Lawns
+          </Typography>
+          <WorkLoad 
+            workLoad={this.props.workLoad}
+          />
         </div>
       );
       
