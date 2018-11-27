@@ -11,8 +11,8 @@ assuming you have both rails and yarn installed on your machine
 2. In command line open the directory of where you cloned the project to.
 3. Run the following to install the necessary dependencies.
 ---
-`$ bundle install`
-`$ yarn install`
+*`$ bundle install`
+*`$ yarn install`
 
 4. Create and prepare the database.
 `$ bundle exec rake:db create`
