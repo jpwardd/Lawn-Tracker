@@ -1,5 +1,5 @@
 <h2><strong>Lawn-List</strong></h2>
----
+<hr />
 A productivity app for the landscaping industry!
 
 <h4>Getting Started</h4>
