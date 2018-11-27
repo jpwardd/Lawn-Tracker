@@ -39,7 +39,7 @@ export default class EmployeeFormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Add Your Customer</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add an employee</DialogTitle>
           <DialogContent>
             <EmployeeFormContainer
               customers={this.props.customers}
