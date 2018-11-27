@@ -1,10 +1,10 @@
-*Lawn-List*
+<h2><strong>Lawn-List</strong></h2>
 ---
 A productivity app for the landscaping industry!
 
-*Getting Started*
+<h4>Getting Started</h4>
 
-assuming you have both rails and yarn installed on your machine
+<strong>assuming you have both rails and yarn installed on your machine</strong>
 
 1. Clone the repository to your computer.
 2. In command line open the directory of where you cloned the project to.
@@ -16,17 +16,20 @@ assuming you have both rails and yarn installed on your machine
 </ul>
 
 4. Create and prepare the database.
-`$ bundle exec rake:db create`
-`$ bundle exec rake:db migrate`
-
+<ul>
+<li>`$ bundle exec rake:db create`</li>
+<li>`$ bundle exec rake:db migrate`</li>
+</ul>
 5. Start the rails server by running the following. Then visit localhost:3000 in your browser of choice.
-`$ rails s`
-6. In another terminal window in the same directory run the following 
+<ul>
+  <li>`$ rails s`</li>
+  <h5>6. In another terminal window in the same directory run the following</h5> 
+  <li>`$ yarn start`</li>
+</ul>
 
+<hr />
 
-
-
-*Frameworks*
+<h3>Frameworks</h3>
 
 -Devise gem - User authentication.
 -Material-ui - Google's ReactJs style library
@@ -34,9 +37,11 @@ assuming you have both rails and yarn installed on your machine
 
 *APIs*
 Google Maps
+Google Places
 
-*Features I'm Currently Working on*
-
-1.Employees - employees can sign in to a seperate account to view their lawn list.
-2.Dark Sky API - so the user is prepared for inclimate weather.
-3.Done button - when an employee finishes a lawn it outputs in a list of "finsihed lawns".
+<strong>Features I'm Currently Working on</strong>
+<ul>
+  <li>Employees - employees can sign in to a seperate account to view their lawn list.</li>
+  <li>Dark Sky API - so the user is prepared for inclimate weather.</li>
+  <li>Done button - when an employee finishes a lawn it outputs in a list of "finsihed lawns".</li>
+</ul>
