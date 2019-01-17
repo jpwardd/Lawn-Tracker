@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_114105) do
+ActiveRecord::Schema.define(version: 2018_11_17_032521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "last_name"
     t.string "phone_number", null: false
     t.string "email"
     t.string "address", null: false
@@ -30,15 +30,34 @@ ActiveRecord::Schema.define(version: 2018_10_30_114105) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
-  create_table "jobs", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "customer_id"
-    t.text "notes"
-    t.datetime "job_date", null: false
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.bigint "user_id", null: false
+    t.bigint "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index ["job_id"], name: "index_employees_on_job_id"
+    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+    t.index ["user_id"], name: "index_employees_on_user_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.datetime "job_date", null: false
+    t.text "notes"
+    t.bigint "user_id", null: false
+    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_jobs_on_customer_id"
+    t.index ["employee_id"], name: "index_jobs_on_employee_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
@@ -50,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_114105) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,12 +1,23 @@
-.sign-up-container{
-  border: 2px solid lightgrey;
+.signup-container {
+  margin-top: 50px;
+  border-bottom: 10px solid #F34236;
   background: #FAFAFAFA;
-  width: 80%;
+  border-radius: 4px;
+  max-width: 500px;
+  padding: 20px;
+  width: 100%;
+  background: #9AA58C;
 
 
 }
 
-.shared{
-  float: right;
-  margin: 20px
+.signup-field-container {
+  border-radius: 4px;
+  padding: 20px 10px;
+  background: #FAFAFAFA;
+  margin: 20 auto;
+  height: 400px;
+
+
 }
+
